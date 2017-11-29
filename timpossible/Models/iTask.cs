@@ -3,10 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace timpossible.Models
 {
-    public class Task
+    public class iTask
     {
         [Required]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         public string Owner { get; set; }
 

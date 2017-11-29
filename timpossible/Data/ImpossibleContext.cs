@@ -11,7 +11,7 @@ namespace timpossible.Data
         {
         }
 
-        public DbSet<Task> Tasks { get; set; }
+        public DbSet<iTask> Tasks { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

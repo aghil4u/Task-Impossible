@@ -1,5 +1,3 @@
-using System;
-
 namespace timpossible.Models
 {
     public class ErrorViewModel

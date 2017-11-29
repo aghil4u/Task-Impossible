@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 
 namespace timpossible.Models
@@ -10,13 +6,11 @@ namespace timpossible.Models
     // Add profile data for application users by adding properties to the ApplicationUser class
     public class ApplicationUser : IdentityUser
     {
-
-
         public string FirstName { get; set; }
 
         public string SecondName { get; set; }
 
-        public String Gender { get; set; }
+        public string Gender { get; set; }
 
         public string Bio { get; set; }
 
@@ -61,6 +55,5 @@ namespace timpossible.Models
         public int TasksCompleted { get; set; }
 
         public string Grade { get; set; }
-
     }
 }

@@ -1,0 +1,263 @@
+﻿@model iTask
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<div class="page-header header-filter" filter-color="purple" style="background-position: top center; background-size: cover; height: 100%; padding-bottom: 100px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="card card-signup" style="padding-bottom: 50px; padding-top: 50px;">
+                    <h2 class="card-title text-center">Create a Task</h2>
+                    <div class="row">
+
+
+                        <div class="col-md-5 col-md-offset-1">
+                            <form class="form" asp-action="Create">
+                                <div class="card-content">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="material-icons">face</i>
+                                        </span>
+                                        <div class="form-group is-empty">
+                                            <input class="form-control" placeholder="Give this Task a Title..." asp-for="Title" type="text"><span class="material-input"></span>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group label-floating" style="margin-left: 50px;">
+                                        <label class="control-label">Explain the Task for us</label>
+                                        <textarea name="message" class="form-control" asp-for="Description" rows="6"></textarea>
+                                        <span class="material-input"></span>
+                                    </div>
+
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="material-icons">face</i>
+                                        </span>
+                                        <div class="form-group is-empty">
+                                            <input class="form-control" placeholder="Location" asp-for="Location" type="text"><span class="material-input"></span>
+                                        </div>
+                                    </div>
+
+                                    @*<div class="form-group" style="padding-left: 1.5rem">
+                                        <span class="for-group-addon" style="margin-right: 1rem">
+                                            <i class="material-icons">schedule</i>
+                                        </span>
+                                        <label class="label-control">When do you want to get this done?</label>
+                                        <input class="form-control datetimepicker" style="margin-left: 4rem" value="10/05/2016" asp-for="TargetDate" type="text">
+                                        <span class="material-input"></span>
+                                    </div>*@
+
+                                    <div class="form-group">
+                                        <label class="label-control">Datetime Picker</label>
+                                        <input class="form-control datetimepicker" value="10/05/2016" style="" type="text">
+                                        <span class="material-input"></span>
+                                    </div>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="material-icons">face</i>
+                                        </span>
+                                        <div class="form-group is-empty">
+                                            <input class="form-control" placeholder="Choose a Category" asp-for="Category" type="text"><span class="material-input"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="material-icons">face</i>
+                                        </span>
+                                        <div class="form-group is-empty">
+                                            <input class="form-control" placeholder="Type of task" asp-for="Type" type="text"><span class="material-input"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="material-icons">face</i>
+                                        </span>
+                                        <div class="form-group is-empty">
+                                            <input class="form-control" placeholder="Location" asp-for="Location" type="text"><span class="material-input"></span>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- If you want to add a checkbox to this form, uncomment this code -->
+                                    <div class="checkbox">
+                                        <label>
+                                            <input name="optionsCheckboxes" checked="" type="checkbox"><span class="checkbox-material">
+                                                <span class="check"></span>
+                                            </span>
+                                            Negotiable
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="footer text-center">
+                                    <input type="submit" value="Create" class="btn btn-primary btn-round"/>
+
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="col-md-5">
+                            <div class="info info-horizontal">
+                                <div class="icon icon-rose">
+                                    <i class="material-icons">timeline</i>
+                                </div>
+                                <div class="description">
+                                    <h4 class="info-title">Marketing</h4>
+                                    <p class="description">
+                                        We've created the marketing campaign of the website. It was a very interesting collaboration.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="info info-horizontal">
+                                <div class="icon icon-primary">
+                                    <i class="material-icons">code</i>
+                                </div>
+                                <div class="description">
+                                    <h4 class="info-title">Fully Coded in HTML5</h4>
+                                    <p class="description">
+                                        We've developed the website with HTML5 and CSS3. The client has access to the code using GitHub.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="info info-horizontal">
+                                <div class="icon icon-info">
+                                    <i class="material-icons">group</i>
+                                </div>
+                                <div class="description">
+                                    <h4 class="info-title">Built Audience</h4>
+                                    <p class="description">
+                                        There is also a Fully Customizable CMS Admin Dashboard for this product.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@*<h2>Create</h2>
+
+<h4>iTask</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Owner" class="control-label"></label>
+                <input asp-for="Owner" class="form-control" />
+                <span asp-validation-for="Owner" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Category" class="control-label"></label>
+                <input asp-for="Category" class="form-control" />
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Type" class="control-label"></label>
+                <input asp-for="Type" class="form-control" />
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Location" class="control-label"></label>
+                <input asp-for="Location" class="form-control" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lat" class="control-label"></label>
+                <input asp-for="Lat" class="form-control" />
+                <span asp-validation-for="Lat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lon" class="control-label"></label>
+                <input asp-for="Lon" class="form-control" />
+                <span asp-validation-for="Lon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Radius" class="control-label"></label>
+                <input asp-for="Radius" class="form-control" />
+                <span asp-validation-for="Radius" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NegotiationMarker" class="control-label"></label>
+                <input asp-for="NegotiationMarker" class="form-control" />
+                <span asp-validation-for="NegotiationMarker" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreationDate" class="control-label"></label>
+                <input asp-for="CreationDate" class="form-control" />
+                <span asp-validation-for="CreationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TargetDate" class="control-label"></label>
+                <input asp-for="TargetDate" class="form-control" />
+                <span asp-validation-for="TargetDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClosingDate" class="control-label"></label>
+                <input asp-for="ClosingDate" class="form-control" />
+                <span asp-validation-for="ClosingDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Renumeration" class="control-label"></label>
+                <input asp-for="Renumeration" class="form-control" />
+                <span asp-validation-for="Renumeration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaymentTerms" class="control-label"></label>
+                <input asp-for="PaymentTerms" class="form-control" />
+                <span asp-validation-for="PaymentTerms" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Currency" class="control-label"></label>
+                <input asp-for="Currency" class="form-control" />
+                <span asp-validation-for="Currency" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CoverPhoto" class="control-label"></label>
+                <input asp-for="CoverPhoto" class="form-control" />
+                <span asp-validation-for="CoverPhoto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}*@

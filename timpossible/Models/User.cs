@@ -15,7 +15,7 @@ namespace timpossible.Models
 
         public string SecondName { get; set; }
 
-        public String Gender { get; set; }
+        public string Gender { get; set; }
 
         public string Bio { get; set; }
 
@@ -60,8 +60,5 @@ namespace timpossible.Models
         public int TasksCompleted { get; set; }
 
         public string Grade { get; set; }
-
-
-        
     }
 }

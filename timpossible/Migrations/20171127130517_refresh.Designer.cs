@@ -230,7 +230,7 @@ namespace timpossible.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("timpossible.Models.Task", b =>
+            modelBuilder.Entity("timpossible.Models.iTask", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
