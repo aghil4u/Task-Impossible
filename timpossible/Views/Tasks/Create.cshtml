@@ -8,7 +8,7 @@
 <div class="page-header header-filter" filter-color="purple" style="background-position: top center; background-size: cover; height: 100%; padding-bottom: 100px;">
     <div class="container">
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-12">
                 <div class="card card-signup" style="padding-bottom: 50px; padding-top: 50px;">
                     <h2 class="card-title text-center">Create a Task</h2>
                     <div class="row">
@@ -22,24 +22,25 @@
                                             <i class="material-icons">face</i>
                                         </span>
                                         <div class="form-group is-empty">
-                                            <input class="form-control" placeholder="Give this Task a Title..." asp-for="Title" type="text"><span class="material-input"></span>
+                                            <input class="form-control" placeholder="Give this Task a Title..." asp-for="Title" type="text">
                                         </div>
                                     </div>
 
-
+                                   
                                     <div class="form-group label-floating" style="margin-left: 50px;">
+                                       
                                         <label class="control-label">Explain the Task for us</label>
                                         <textarea name="message" class="form-control" asp-for="Description" rows="6"></textarea>
-                                        <span class="material-input"></span>
+
                                     </div>
 
 
                                     <div class="input-group">
                                         <span class="input-group-addon">
-                                            <i class="material-icons">face</i>
+                                            <i class="material-icons">room</i>
                                         </span>
                                         <div class="form-group is-empty">
-                                            <input class="form-control" placeholder="Location" asp-for="Location" type="text"><span class="material-input"></span>
+                                            <input class="form-control" placeholder="Location" asp-for="Location" type="text">
                                         </div>
                                     </div>
 
@@ -49,13 +50,13 @@
                                         </span>
                                         <label class="label-control">When do you want to get this done?</label>
                                         <input class="form-control datetimepicker" style="margin-left: 4rem" value="10/05/2016" asp-for="TargetDate" type="text">
-                                        <span class="material-input"></span>
+                                        
                                     </div>*@
 
-                                    <div class="form-group">
+                                    <div class="form-group" style="margin-left: 5rem">
                                         <label class="label-control">Datetime Picker</label>
                                         <input class="form-control datetimepicker" value="10/05/2016" style="" type="text">
-                                        <span class="material-input"></span>
+                                        
                                     </div>
 
                                     <div class="input-group">
@@ -63,7 +64,7 @@
                                             <i class="material-icons">face</i>
                                         </span>
                                         <div class="form-group is-empty">
-                                            <input class="form-control" placeholder="Choose a Category" asp-for="Category" type="text"><span class="material-input"></span>
+                                            <input class="form-control" placeholder="Choose a Category" asp-for="Category" type="text">
                                         </div>
                                     </div>
 
@@ -72,7 +73,7 @@
                                             <i class="material-icons">face</i>
                                         </span>
                                         <div class="form-group is-empty">
-                                            <input class="form-control" placeholder="Type of task" asp-for="Type" type="text"><span class="material-input"></span>
+                                            <input class="form-control" placeholder="Type of task" asp-for="Type" type="text">
                                         </div>
                                     </div>
 
@@ -81,7 +82,7 @@
                                             <i class="material-icons">face</i>
                                         </span>
                                         <div class="form-group is-empty">
-                                            <input class="form-control" placeholder="Location" asp-for="Location" type="text"><span class="material-input"></span>
+                                            <input class="form-control" placeholder="Renumeration" asp-for="Renumeration" type="text">
                                         </div>
                                     </div>
 
@@ -89,9 +90,7 @@
                                     <!-- If you want to add a checkbox to this form, uncomment this code -->
                                     <div class="checkbox">
                                         <label>
-                                            <input name="optionsCheckboxes" checked="" type="checkbox"><span class="checkbox-material">
-                                                <span class="check"></span>
-                                            </span>
+                                            <input name="optionsCheckboxes" checked="" type="checkbox">
                                             Negotiable
                                         </label>
                                     </div>
@@ -103,15 +102,15 @@
                             </form>
                         </div>
 
-                        <div class="col-md-5">
+                        <div class="col-md-5 hidden-sm hidden-xs">
                             <div class="info info-horizontal">
                                 <div class="icon icon-rose">
                                     <i class="material-icons">timeline</i>
                                 </div>
                                 <div class="description">
-                                    <h4 class="info-title">Marketing</h4>
+                                    <h4 class="info-title">Make it clear</h4>
                                     <p class="description">
-                                        We've created the marketing campaign of the website. It was a very interesting collaboration.
+                                        Give the task a simple title and clear Description to get things started.
                                     </p>
                                 </div>
                             </div>
@@ -121,9 +120,9 @@
                                     <i class="material-icons">code</i>
                                 </div>
                                 <div class="description">
-                                    <h4 class="info-title">Fully Coded in HTML5</h4>
+                                    <h4 class="info-title">Give it a Deadline</h4>
                                     <p class="description">
-                                        We've developed the website with HTML5 and CSS3. The client has access to the code using GitHub.
+                                       Let us know when you want this to be completed
                                     </p>
                                 </div>
                             </div>
@@ -133,9 +132,9 @@
                                     <i class="material-icons">group</i>
                                 </div>
                                 <div class="description">
-                                    <h4 class="info-title">Built Audience</h4>
+                                    <h4 class="info-title">Give it a Price</h4>
                                     <p class="description">
-                                        There is also a Fully Customizable CMS Admin Dashboard for this product.
+                                        Mention your budget for the task and if your willing for a negotiation to avoid surprises.
                                     </p>
                                 </div>
                             </div>
@@ -148,6 +147,15 @@
 
 </div>
 
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function(){
+
+        materialKit.initFormExtendedDatetimepickers();
+
+    });
+</script>
 
 @*<h2>Create</h2>
 
