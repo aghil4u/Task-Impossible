@@ -30,7 +30,16 @@ namespace timpossible
             services.AddDbContext<ImpossibleContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("ImpossibleConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+                {
+                    // Password settings
+                    options.Password.RequireDigit = false;
+                    options.Password.RequiredLength = 8;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequiredUniqueChars = 0;
+                })
                 .AddEntityFrameworkStores<ImpossibleContext>()
                 .AddDefaultTokenProviders();
 
@@ -51,14 +60,14 @@ namespace timpossible
 
             services.AddAuthentication().AddFacebook(facebookOptions =>
             {
-                facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
-                facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+                facebookOptions.AppId = "197839510773337";
+                facebookOptions.AppSecret = "e8cefb43690f6911d59e8a12e7725670";
             });
 
             services.AddAuthentication().AddGoogle(googleOptions =>
             {
-                googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
-                googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+                googleOptions.ClientId = "388595804007-pltqcb8d5lo79hg2oos7rlt8dsnul1h6.apps.googleusercontent.com";
+                googleOptions.ClientSecret = "kwNMG3_7UGIW_SGEMBTIDXRA";
             });
         }
 

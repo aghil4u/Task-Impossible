@@ -11,8 +11,8 @@ using timpossible.Data;
 namespace timpossible.Migrations
 {
     [DbContext(typeof(ImpossibleContext))]
-    [Migration("20171127140305_updated Taskmodel name")]
-    partial class updatedTaskmodelname
+    [Migration("20171202100349_tst")]
+    partial class tst
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

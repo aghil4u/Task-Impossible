@@ -1,27 +1,31 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using System;
+using System.Collections.Generic;
 
 namespace timpossible.Migrations
 {
-    public partial class refresh : Migration
+    public partial class tst : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                "AspNetRoles",
-                table => new
+                name: "AspNetRoles",
+                columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
                     Name = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(maxLength: 256, nullable: true)
                 },
-                constraints: table => { table.PrimaryKey("PK_AspNetRoles", x => x.Id); });
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
+                });
 
             migrationBuilder.CreateTable(
-                "AspNetUsers",
-                table => new
+                name: "AspNetUsers",
+                columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
@@ -64,13 +68,17 @@ namespace timpossible.Migrations
                     UserName = table.Column<string>(maxLength: 256, nullable: true),
                     Verified = table.Column<bool>(nullable: false)
                 },
-                constraints: table => { table.PrimaryKey("PK_AspNetUsers", x => x.Id); });
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
 
             migrationBuilder.CreateTable(
-                "Tasks",
-                table => new
+                name: "Tasks",
+                columns: table => new
                 {
-                    Id = table.Column<string>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Category = table.Column<string>(nullable: true),
                     ClosingDate = table.Column<DateTime>(nullable: false),
                     CoverPhoto = table.Column<string>(nullable: true),
@@ -90,15 +98,17 @@ namespace timpossible.Migrations
                     Title = table.Column<string>(nullable: true),
                     Type = table.Column<string>(nullable: true)
                 },
-                constraints: table => { table.PrimaryKey("PK_Tasks", x => x.Id); });
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tasks", x => x.Id);
+                });
 
             migrationBuilder.CreateTable(
-                "AspNetRoleClaims",
-                table => new
+                name: "AspNetRoleClaims",
+                columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy",
-                            SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true),
                     RoleId = table.Column<string>(nullable: false)
@@ -107,20 +117,19 @@ namespace timpossible.Migrations
                 {
                     table.PrimaryKey("PK_AspNetRoleClaims", x => x.Id);
                     table.ForeignKey(
-                        "FK_AspNetRoleClaims_AspNetRoles_RoleId",
-                        x => x.RoleId,
-                        "AspNetRoles",
-                        "Id",
+                        name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                "AspNetUserClaims",
-                table => new
+                name: "AspNetUserClaims",
+                columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy",
-                            SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true),
                     UserId = table.Column<string>(nullable: false)
@@ -129,16 +138,16 @@ namespace timpossible.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
                     table.ForeignKey(
-                        "FK_AspNetUserClaims_AspNetUsers_UserId",
-                        x => x.UserId,
-                        "AspNetUsers",
-                        "Id",
+                        name: "FK_AspNetUserClaims_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                "AspNetUserLogins",
-                table => new
+                name: "AspNetUserLogins",
+                columns: table => new
                 {
                     LoginProvider = table.Column<string>(nullable: false),
                     ProviderKey = table.Column<string>(nullable: false),
@@ -147,42 +156,42 @@ namespace timpossible.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUserLogins", x => new {x.LoginProvider, x.ProviderKey});
+                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
                     table.ForeignKey(
-                        "FK_AspNetUserLogins_AspNetUsers_UserId",
-                        x => x.UserId,
-                        "AspNetUsers",
-                        "Id",
+                        name: "FK_AspNetUserLogins_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                "AspNetUserRoles",
-                table => new
+                name: "AspNetUserRoles",
+                columns: table => new
                 {
                     UserId = table.Column<string>(nullable: false),
                     RoleId = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUserRoles", x => new {x.UserId, x.RoleId});
+                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
                     table.ForeignKey(
-                        "FK_AspNetUserRoles_AspNetRoles_RoleId",
-                        x => x.RoleId,
-                        "AspNetRoles",
-                        "Id",
+                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        "FK_AspNetUserRoles_AspNetUsers_UserId",
-                        x => x.UserId,
-                        "AspNetUsers",
-                        "Id",
+                        name: "FK_AspNetUserRoles_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                "AspNetUserTokens",
-                table => new
+                name: "AspNetUserTokens",
+                columns: table => new
                 {
                     UserId = table.Column<string>(nullable: false),
                     LoginProvider = table.Column<string>(nullable: false),
@@ -191,51 +200,51 @@ namespace timpossible.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUserTokens", x => new {x.UserId, x.LoginProvider, x.Name});
+                    table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
                     table.ForeignKey(
-                        "FK_AspNetUserTokens_AspNetUsers_UserId",
-                        x => x.UserId,
-                        "AspNetUsers",
-                        "Id",
+                        name: "FK_AspNetUserTokens_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                "IX_AspNetRoleClaims_RoleId",
-                "AspNetRoleClaims",
-                "RoleId");
+                name: "IX_AspNetRoleClaims_RoleId",
+                table: "AspNetRoleClaims",
+                column: "RoleId");
 
             migrationBuilder.CreateIndex(
-                "RoleNameIndex",
-                "AspNetRoles",
-                "NormalizedName",
+                name: "RoleNameIndex",
+                table: "AspNetRoles",
+                column: "NormalizedName",
                 unique: true,
                 filter: "[NormalizedName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                "IX_AspNetUserClaims_UserId",
-                "AspNetUserClaims",
-                "UserId");
+                name: "IX_AspNetUserClaims_UserId",
+                table: "AspNetUserClaims",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
-                "IX_AspNetUserLogins_UserId",
-                "AspNetUserLogins",
-                "UserId");
+                name: "IX_AspNetUserLogins_UserId",
+                table: "AspNetUserLogins",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
-                "IX_AspNetUserRoles_RoleId",
-                "AspNetUserRoles",
-                "RoleId");
+                name: "IX_AspNetUserRoles_RoleId",
+                table: "AspNetUserRoles",
+                column: "RoleId");
 
             migrationBuilder.CreateIndex(
-                "EmailIndex",
-                "AspNetUsers",
-                "NormalizedEmail");
+                name: "EmailIndex",
+                table: "AspNetUsers",
+                column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
-                "UserNameIndex",
-                "AspNetUsers",
-                "NormalizedUserName",
+                name: "UserNameIndex",
+                table: "AspNetUsers",
+                column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
         }
@@ -243,28 +252,28 @@ namespace timpossible.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                "AspNetRoleClaims");
+                name: "AspNetRoleClaims");
 
             migrationBuilder.DropTable(
-                "AspNetUserClaims");
+                name: "AspNetUserClaims");
 
             migrationBuilder.DropTable(
-                "AspNetUserLogins");
+                name: "AspNetUserLogins");
 
             migrationBuilder.DropTable(
-                "AspNetUserRoles");
+                name: "AspNetUserRoles");
 
             migrationBuilder.DropTable(
-                "AspNetUserTokens");
+                name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                "Tasks");
+                name: "Tasks");
 
             migrationBuilder.DropTable(
-                "AspNetRoles");
+                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                "AspNetUsers");
+                name: "AspNetUsers");
         }
     }
 }
