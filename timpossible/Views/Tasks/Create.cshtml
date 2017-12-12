@@ -2,10 +2,218 @@
 
 @{
     ViewData["Title"] = "Create";
+    Layout = "_LayoutWizard";
 }
 
 
-<div class="page-header header-filter" filter-color="purple" style="background-position: top center; background-size: cover; height: 100%; padding-bottom: 100px;">
+<!-- Big container -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <!-- Wizard container -->
+            <div class="wizard-container">
+                <div class="card wizard-card" data-color="purple" id="wizard">
+                    <form action="" method="" novalidate="novalidate">
+
+                        <div class="wizard-header">
+                            <h3 class="wizard-title">
+                                Create A Task
+                            </h3>
+                            <h5>Let us walk you through this.</h5>
+                        </div>
+                        <div class="wizard-navigation">
+                            <ul class="nav nav-pills">
+                                <li class="active" style="width: 25%;">
+                                    <a href="#tasktitle" data-toggle="tab" aria-expanded="true">TITLE</a>
+                                </li>
+                                <li class="" style="width: 25%;">
+                                    <a href="#type" data-toggle="tab" aria-expanded="false">DETAILS</a>
+                                </li>
+                                <li style="width: 25%;">
+                                    <a href="#loc" id="maptab" data-toggle="tab">Location</a>
+                                </li>
+                                <li style="width: 25%;">
+                                    <a href="#description" data-toggle="tab">Renumeration</a>
+                                </li>
+                                <li style="width: 25%;">
+                                    <a href="#last" data-toggle="tab">Finish</a>
+                                </li>
+                            </ul>
+                            <div class="moving-tab" style="transform: translate3d(-8px, 0px, 0px); transition: all 0.5s cubic-bezier(0.29, 1.42, 0.79, 1); width: 187.5px;">Title</div>
+                        </div>
+
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tasktitle">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h4 class="info-text"> Give your Task a Title.</h4>
+                                    </div>
+                                    <div class="col-sm-8 col-sm-offset-2" style="margin-top: 5rem">
+                                        <div class="form-group label-floating is-empty">
+                                            <label class="control-label">I want a Tasker to...</label>
+                                            <input type="text" class="form-control" asp-for="Title" id="tasktitlefield">
+                                            <span class="material-input"></span>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+                            <div class="tab-pane" id="type">
+                                <h4 class="info-text">Give us some details. </h4>
+                                <div class="row" style="margin-bottom: -2rem; margin-top: -2rem;">
+                                    <div class="col-sm-10 col-sm-offset-1">
+                                        <div class="form-group label-floating is-empty">
+                                            <label class="control-label">Task description</label>
+                                            <textarea class="form-control" placeholder="" rows="9"></textarea>
+                                            <span class="material-input"></span>
+                                            <span class="material-input"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="tab-pane" id="loc"style="margin-left: -15px; margin-right: -15px;">
+                                <h4 class="info-text"> Show us the location of the task. </h4>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div id="map" class="big-map" style="height: 300px; width: 100%;"></div>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="description">
+                                <div class="row">
+                                    <h4 class="info-text"> Drop us a small description. </h4>
+                                    <div class="col-sm-6 col-sm-offset-1">
+                                        <div class="form-group label-floating is-empty">
+                                            <label class="control-label">Place description</label>
+                                            <textarea class="form-control" placeholder="" rows="9"></textarea>
+                                            <span class="material-input"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Example</label>
+                                            <p class="description">"The place is really nice. We use it every sunday when we go fishing. It is so awesome."</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="last">
+                                <div class="row">
+                                    <h4 class="info-text"> Drop us a small description. </h4>
+                                    <div class="col-sm-6 col-sm-offset-1">
+                                        <div class="form-group label-floating is-empty">
+                                            <label class="control-label">Place description</label>
+                                            <textarea class="form-control" placeholder="" rows="9"></textarea>
+                                            <span class="material-input"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Example</label>
+                                            <p class="description">"The place is really nice. We use it every sunday when we go fishing. It is so awesome."</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wizard-footer">
+                            <div class="pull-right">
+                                <input type="button" class="btn btn-next btn-fill btn-primary btn-wd" name="next" value="Next">
+                                <input type="button" class="btn btn-finish btn-fill btn-primary btn-wd" name="finish" value="Finish" style="display: none;">
+                            </div>
+                            <div class="pull-left">
+                                <input type="button" class="btn btn-previous btn-fill btn-default btn-wd disabled" name="previous" value="Previous">
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </form>
+                </div>
+            </div> <!-- wizard container -->
+        </div>
+    </div> <!-- row -->
+</div> <!-- big container -->
+
+<div class="footer">
+    <div class="container text-center">
+        Made with <i class="fa fa-heart heart"></i> by <a href="http://www.idkw.im"> The Impossible Team</a>.
+    </div>
+</div>
+
+
+<script>
+    // Note: This example requires that you consent to location sharing when
+    // prompted by your browser. If you see the error "The Geolocation service
+    // failed.", it means you probably did not give permission for the browser to
+    // locate you.
+    var map, pos;
+
+    function initMap() {
+
+        pos = { lat: -34.397, lng: 150.644 };
+        map = new google.maps.Map(document.getElementById('map'),
+            {
+                center: pos,
+                zoom: 10,
+                zoomControl: true,
+                mapTypeControl: false,
+                scaleControl: false,
+                streetViewControl: false,
+                rotateControl: false,
+                fullscreenControl: true,
+                geolocationControl:true
+    });
+
+
+        BindResizeEvent();
+
+
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                 pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: pos,
+                    title: "{{ location.name }}",
+                    draggable:true,
+            });
+                marker.setMap(map);
+                map.setCenter(pos);
+            });
+        } else {
+            // Browser doesn't support Geolocation
+
+        }
+    }
+
+
+
+    function BindResizeEvent() {
+        $("a[href='#loc']").on('shown.bs.tab',
+            function() {
+                google.maps.event.trigger(map, 'resize');
+                map.setCenter(pos);
+            });
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvbpO6ps576pAmEBvWg9yTrjGrgyy4nCU&callback=initMap">
+</script>
+
+
+@*<div class="page-header header-filter" filter-color="purple" style="background-position: top center; background-size: cover; height: 100%; padding-bottom: 100px;">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -44,14 +252,7 @@
                                         </div>
                                     </div>
 
-                                    @*<div class="form-group" style="padding-left: 1.5rem">
-                                        <span class="for-group-addon" style="margin-right: 1rem">
-                                            <i class="material-icons">schedule</i>
-                                        </span>
-                                        <label class="label-control">When do you want to get this done?</label>
-                                        <input class="form-control datetimepicker" style="margin-left: 4rem" value="10/05/2016" asp-for="TargetDate" type="text">
-                                        
-                                    </div>*@
+
 
                                     <div class="form-group" style="margin-left: 5rem">
                                         <label class="label-control">Datetime Picker</label>
@@ -87,7 +288,7 @@
                                     </div>
 
 
-                                    <!-- If you want to add a checkbox to this form, uncomment this code -->
+                                     If you want to add a checkbox to this form, uncomment this code 
                                     <div class="checkbox">
                                         <label>
                                             <input name="optionsCheckboxes" checked="" type="checkbox">
@@ -155,7 +356,7 @@
         materialKit.initFormExtendedDatetimepickers();
 
     });
-</script>
+</script>*@
 
 @*<h2>Create</h2>
 
