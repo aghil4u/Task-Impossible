@@ -13,7 +13,7 @@
             <!-- Wizard container -->
             <div class="wizard-container">
                 <div class="card wizard-card" data-color="purple" id="wizard">
-                    <form action="" method="" novalidate="novalidate">
+                    <form asp-controller="Tasks" asp-action="Create" novalidate="novalidate">
 
                         <div class="wizard-header">
                             <h3 class="wizard-title">
@@ -63,51 +63,68 @@
 
                             <div class="tab-pane" id="type">
                                 <h4 class="info-text">Give us some details. </h4>
-                                <div class="row" style="margin-bottom: -2rem; margin-top: -2rem;">
+                                <div class="row" style="margin-top: -2rem;">
                                     <div class="col-sm-10 col-sm-offset-1">
                                         <div class="form-group label-floating is-empty">
                                             <label class="control-label">Task description</label>
-                                            <textarea class="form-control" placeholder="" rows="9"></textarea>
+                                            <textarea class="form-control" asp-for="Description" placeholder="" rows="9"></textarea>
                                             <span class="material-input"></span>
                                             <span class="material-input"></span>
                                         </div>
                                     </div>
+
+                                    <div class="col-sm-5 col-sm-offset-1">
+                                        <div class="form-group">
+                                            <label class="control-label">Start Date</label>
+                                            <input type="datetime" asp-for="CreationDate" class="form-control datetimepicker">
+                                            <span class="material-input"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-5">
+                                        <div class="form-group">
+                                            <label class="control-label">End Date Date</label>
+                                            <input type="datetime" asp-for="TargetDate" class="form-control datetimepicker">
+                                            <span class="material-input"></span>
+                                        </div>
+                                    </div>
                                 </div>
+
                             </div>
 
 
                             <div class="tab-pane" id="loc"style="margin-left: -15px; margin-right: -15px;">
                                 <h4 class="info-text"> Show us the location of the task. </h4>
+
                                 <div class="row">
                                     <div class="col-sm-12">
+
                                         <div id="map" class="big-map" style="height: 300px; width: 100%;"></div>
 
-
+                                        <div class="form-group" style="margin-left: 5rem; margin-right: 5rem; margin-top: -5px;">
+                                            @*<label class="control-label">Location</label>*@
+                                            <input type="text" id="locText" asp-for="Location" class="form-control">
+                                            <span class="material-input"></span>
+                                        </div>
                                     </div>
 
                                 </div>
                             </div>
                             <div class="tab-pane" id="description">
                                 <div class="row">
-                                    <h4 class="info-text"> Drop us a small description. </h4>
-                                    <div class="col-sm-6 col-sm-offset-1">
+                                    <h4 class="info-text"> Tell us about your Budget. </h4>
+                                    <div class="col-sm-8 col-sm-offset-2" style="margin-top: 5rem">
                                         <div class="form-group label-floating is-empty">
-                                            <label class="control-label">Place description</label>
-                                            <textarea class="form-control" placeholder="" rows="9"></textarea>
+                                            <label class="control-label">Im Ready to Pay...</label>
+                                            <input type="text" class="form-control" asp-for="Renumeration">
                                             <span class="material-input"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group label-floating">
-                                            <label class="control-label">Example</label>
-                                            <p class="description">"The place is really nice. We use it every sunday when we go fishing. It is so awesome."</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="tab-pane" id="last">
                                 <div class="row">
-                                    <h4 class="info-text"> Drop us a small description. </h4>
+                                    <h4 class="info-text"> Review your Task Listing. </h4>
                                     <div class="col-sm-6 col-sm-offset-1">
                                         <div class="form-group label-floating is-empty">
                                             <label class="control-label">Place description</label>
@@ -127,7 +144,7 @@
                         <div class="wizard-footer">
                             <div class="pull-right">
                                 <input type="button" class="btn btn-next btn-fill btn-primary btn-wd" name="next" value="Next">
-                                <input type="button" class="btn btn-finish btn-fill btn-primary btn-wd" name="finish" value="Finish" style="display: none;">
+                                <input type="submit" class="btn btn-finish btn-fill btn-primary btn-wd" name="finish" value="Finish" style="display: none;">
                             </div>
                             <div class="pull-left">
                                 <input type="button" class="btn btn-previous btn-fill btn-default btn-wd disabled" name="previous" value="Previous">
@@ -153,7 +170,7 @@
     // prompted by your browser. If you see the error "The Geolocation service
     // failed.", it means you probably did not give permission for the browser to
     // locate you.
-    var map, pos;
+    var map, pos, marker;
 
     function initMap() {
 
@@ -168,36 +185,64 @@
                 streetViewControl: false,
                 rotateControl: false,
                 fullscreenControl: true,
-                geolocationControl:true
-    });
-
+                geolocationControl: true
+            });
+        marker = new google.maps.Marker({
+            map: map,
+            position: pos,
+            title: "{{ location.name }}",
+            draggable: true,
+        });
+        marker.setMap(map);
+        //marker.addListener('drag', handleDragEvent);
+        marker.addListener('dragend', handleDragEvent);
 
         BindResizeEvent();
 
 
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
+
             navigator.geolocation.getCurrentPosition(function(position) {
-                 pos = {
+                pos = {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                 };
 
-                var marker = new google.maps.Marker({
+                marker = new google.maps.Marker({
                     map: map,
                     position: pos,
                     title: "{{ location.name }}",
-                    draggable:true,
-            });
+                    draggable: true,
+                });
+                //marker.addListener('drag', handleDragEvent);
+                marker.addListener('dragend', handleDragEvent);
                 marker.setMap(map);
                 map.setCenter(pos);
             });
-        } else {
-            // Browser doesn't support Geolocation
 
         }
     }
 
+
+    function handleDragEvent(event) {
+        var geocoder = new google.maps.Geocoder;
+        geocoder.geocode({ 'location': event.latLng },
+            function(results, status) {
+                if (status === 'OK') {
+                    if (results[0]) {
+                        document.getElementById('locText').value = results[0].formatted_address;
+                    } else {
+                        document.getElementById('locText').value = event.latLng.lat() + "   " + event.latLng.lng();
+                    }
+
+                } else {
+                    document.getElementById('locText').value = event.latLng.lat() + "   " + event.latLng.lng();
+                }
+
+
+            });
+    }
 
 
     function BindResizeEvent() {
@@ -212,6 +257,15 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvbpO6ps576pAmEBvWg9yTrjGrgyy4nCU&callback=initMap">
 </script>
 
+@*<script src="~/lib/jquery/dist/jquery.js"></script>*@
+<script type="text/javascript">
+
+    $(document).ready(function() {
+
+        materialKit.initFormExtendedDatetimepickers();
+
+    });
+</script>
 
 @*<div class="page-header header-filter" filter-color="purple" style="background-position: top center; background-size: cover; height: 100%; padding-bottom: 100px;">
     <div class="container">
