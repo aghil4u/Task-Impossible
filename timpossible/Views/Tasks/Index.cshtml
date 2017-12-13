@@ -1,95 +1,27 @@
 ﻿@model IEnumerable<iTask>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Explore Tasks";
 }
 
 
 <div class="cards" style="margin-top: 20rem">
 
     <div class="container">
-        <div class="title">
-            <h2>Cards</h2>
-            <h3>Blog Cards</h3>
+        <div class="col-sm-3">
+            <div class="card" style="height: 50rem; width: 100%"></div>
         </div>
-        <div class="col-sm-10 col-sm-offset-2">
+        <div class="col-sm-8">
             <div class="row">
-                <div class="col-md-4">
-                    <div class="card card-blog">
-                        <div class="card-image">
-                            <a href="#pablo">
-                                <img class="img" src="~/images/sample (2).jpg">
-                                <div class="card-title">
-                                    This Summer Will be Awesome
-                                </div>
-                            </a>
-                            <div class="colored-shadow" style="background-image: url(&quot;assets/img/examples/card-blog1.jpg&quot;); opacity: 1;"></div>
-                        </div>
-
-                        <div class="card-content">
-                            <h6 class="category text-info">Fashion</h6>
-                            <p class="card-description">
-                                Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-content content-info">
-                            <h5 class="category-social">
-                                <i class="fa fa-twitter"></i> Twitter
-                            </h5>
-                            <h4 class="card-title">
-                                <a href="#pablo">"You Don't Have to Sacrifice Joy to Build a Fabulous Business and Life"</a>
-                            </h4>
-                            <div class="footer">
-                                <div class="author">
-                                    <a href="#pablo">
-                                        <img src="~/images/sample (2).jpg" alt="..." class="avatar img-raised">
-                                        <span>Tania Andrew</span>
-                                    </a>
-                                </div>
-                                <div class="stats">
-                                    <i class="material-icons">favorite</i> 2.4K ·
-                                    <i class="material-icons">share</i> 45
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-content">
-                            <h6 class="category text-danger">
-                                <i class="material-icons">trending_up</i> Trending
-                            </h6>
-                            <h4 class="card-title">
-                                <a href="#pablo">To Grow Your Business Start Focusing on Your Employees</a>
-                            </h4>
-                            <div class="footer">
-                                <div class="author">
-                                    <a href="#pablo">
-                                        <img src="~/images/sample (3).jpg" alt="..." class="avatar img-raised">
-                                        <span>Lord Alex</span>
-                                    </a>
-                                </div>
-                                <div class="stats">
-                                    <i class="material-icons">favorite</i> 342 ·
-                                    <i class="material-icons">chat_bubble</i> 45
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
 
 
 
 
-                    @foreach (var item in Model)
-                    {
 
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-4">
                         <div class="card card-blog">
                             <div class="card-image">
                                 <a href="#pablo">
@@ -106,7 +38,8 @@
                                     <a href="#pablo">@item.Title</a>
                                 </h4>
                                 <p class="card-description">
-                                    @item.Description; </p>
+                                    @item.Description;
+                                </p>
                                 <div class="footer">
                                     <div class="author">
                                         <a href="#pablo">
@@ -121,62 +54,22 @@
                             </div>
                         </div>
 
-
-                    }
-
-
-
-
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card card-blog">
-                        <div class="card-image">
-                            <a href="#pablo">
-                                <img class="img" src="~/images/sample (2).jpg">
-                            </a>
-                            <div class="colored-shadow" style="background-image: url(&quot;assets/img/examples/blog8.jpg&quot;); opacity: 1;"></div>
-                        </div>
-                        <div class="card-content">
-                            <h6 class="category text-danger">
-                                <i class="material-icons">trending_up</i> Trending
-                            </h6>
-                            <h4 class="card-title">
-                                <a href="#pablo">To Grow Your Business Start Focusing on Your Employees</a>
-                            </h4>
-                            <div class="footer">
-                                <div class="author">
-                                    <a href="#pablo">
-                                        <img src="~/images/sample (2).jpg" alt="..." class="avatar img-raised">
-                                        <span>Mike John</span>
-                                    </a>
-                                </div>
-                                <div class="stats">
-                                    <i class="material-icons">schedule</i> 5 min read
-                                </div>
-                            </div>
-                        </div>
                     </div>
+                }
 
-                    <div class="card">
-                        <div class="card-content content-success">
-                            <h5 class="category-social">
-                                <i class="fa fa-newspaper-o"></i> TechCrunch
-                            </h5>
-                            <h4 class="card-title">
-                                <a href="#pablo">"Focus on Your Employees"</a>
-                            </h4>
-                            <p class="card-description">
-                                Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                            </p>
-                            <div class="footer text-center">
-                                <a href="#pablo" class="btn btn-white btn-round">Read Article</a>
-                            </div>
-                        </div>
-                    </div>
 
-                </div>
-            </div></div>
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
     </div>
 
 </div>

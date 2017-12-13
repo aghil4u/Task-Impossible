@@ -27,7 +27,14 @@
 
                 </ul>
             </li>
+            
+            <li class="button-container">
+                <a asp-controller="Tasks" asp-action="Create" class="btn btn-rose btn-round">
+                    <i class="material-icons">lightbulb_outline</i> Create a task
+                </a>
+            </li>
         </ul>
+
     </form>
 }
 else
@@ -38,6 +45,12 @@ else
             <a asp-controller="Account" asp-action="Login">
                 <i class="material-icons">fingerprint</i> Login / register
             </a>
+            
+            <li class="button-container">
+                <a asp-controller="Tasks" asp-action="Create" class="btn btn-rose btn-round">
+                    <i class="material-icons">lightbulb_outline</i> Create a task
+                </a>
+            </li>
         </li>
     </ul>
 }
