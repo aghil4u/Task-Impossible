@@ -5,22 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>@ViewData["Title"] - Task.im</title>
 
-    <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css"/>
-        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-        <link href="~/css/material-kit.css" rel="stylesheet">
-        <link rel="stylesheet" href="~/css/site.css"/>
-    </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"/>
-        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-        <link href="~/css/material-kit.css" rel="stylesheet">
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true"/>
-    </environment>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link href="~/css/material-kit.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css"/>
+
 
 </head>
 <body>
@@ -66,13 +56,12 @@
         </div>
         <div class="collapse navbar-collapse">
 
-           
 
             <ul class="nav navbar-nav navbar-right">
-                
-            
-                   
-               
+
+
+
+
 
                 @await Html.PartialAsync("_LoginPartial")
 
@@ -193,8 +182,8 @@
                         </li>
                     </ul>
                 </li>*@
-                
-               
+
+
             </ul>
 
         </div>
@@ -234,7 +223,9 @@
             <div class="copyright pull-right">
                 ©
 
-                <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by <a href="http://www.idkw.im" target="_blank"><b >The Impossible Team</b></a>
+                <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by <a href="http://www.idkw.im" target="_blank">
+                    <b >The Impossible Team</b>
+                </a>
             </div>
         </div>
     </footer>

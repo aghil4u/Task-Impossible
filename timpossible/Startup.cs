@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Immutable;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -18,8 +16,6 @@ namespace timpossible
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-
-           
         }
 
         public IConfiguration Configuration { get; }
@@ -44,11 +40,7 @@ namespace timpossible
                 .AddDefaultTokenProviders();
 
 
-
-            services.Configure<MvcOptions>(options =>
-            {
-                options.Filters.Add(new RequireHttpsAttribute());
-            });
+            services.Configure<MvcOptions>(options => { options.Filters.Add(new RequireHttpsAttribute()); });
 
             // Add application services.
 
@@ -79,7 +71,6 @@ namespace timpossible
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
                 app.UseDatabaseErrorPage();
-                
             }
             else
             {

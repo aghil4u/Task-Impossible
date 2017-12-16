@@ -27,3 +27,39 @@
     /* Hide captions */
     .carousel-caption { display: none; }
 }
+
+
+
+@media (min-width: 800px) {
+    .card-columns {
+        -moz-column-count: 2;
+        -moz-column-gap: 1.25rem;
+        -webkit-column-count: 2;
+        -webkit-column-gap: 1.2rem;
+        column-count: 2;
+        column-gap: 1.25rem;
+    }
+
+    .card-columns .card {
+        display: inline-block;
+        margin-bottom: 2rem;
+        width: 100%;
+    }
+}
+
+@media (min-width: 1149px) {
+    .card-columns {
+        -moz-column-count: 3;
+        -moz-column-gap: 1.25rem;
+        -webkit-column-count: 3;
+        -webkit-column-gap: 1.2rem;
+        column-count: 3;
+        column-gap: 1.25rem;
+    }
+
+    .card-columns .card {
+        display: inline-block;
+        margin-bottom: 2rem;
+        width: 100%;
+    }
+}

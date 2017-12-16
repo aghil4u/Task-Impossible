@@ -3014,12 +3014,13 @@ fieldset[disabled] .navbar .btn-link:focus { color: inherit; }
     -webkit-transform: translate3d(0, -20px, 0);
     -webkit-transition: all 150ms linear;
     display: block;
+    hidden;
     opacity: 0;
     transform: translate3d(0, -20px, 0);
+    
+    
+    :
     transition: all 150ms linear;
-    
-    
-    : hidden;
 }
 
 .dropdown.open .dropdown-menu,

@@ -11,8 +11,8 @@
         <div class="col-sm-3">
             <div class="card" style="height: 50rem; width: 100%"></div>
         </div>
-        <div class="col-sm-8">
-            <div class="row">
+        <div class="col-sm-9">
+            <div class="card-columns">
 
 
 
@@ -21,40 +21,40 @@
 
                 @foreach (var item in Model)
                 {
-                    <div class="col-md-4">
-                        <div class="card card-blog">
-                            <div class="card-image">
-                                <a href="#pablo">
-                                    <img class="img" src="~/images/sample (4).jpg">
-                                </a>
-                                <div class="colored-shadow" style="background-image: url(&quot;assets/img/examples/card-blog2.jpg&quot;); opacity: 1;"></div>
-                                <div class="ripple-container"></div>
-                            </div>
+                    @*<div class="col-md-4" style="padding: 10px">*@
+                    <div class="card card-blog">
+                        <div class="card-image">
+                            <a href="#pablo">
+                                <img class="img" src="~/images/sample (4).jpg">
+                            </a>
+                            <div class="colored-shadow" style="background-image: url(&quot;assets/img/examples/card-blog2.jpg&quot;); opacity: 1;"></div>
+                            <div class="ripple-container"></div>
+                        </div>
 
-                            <div class="card-content">
-                                <h6 class="category text-success">@item.Category;</h6>
+                        <div class="card-content">
+                            <h6 class="category text-success">@item.CreationDate;</h6>
 
-                                <h4 class="card-title">
-                                    <a href="#pablo">@item.Title</a>
-                                </h4>
-                                <p class="card-description">
-                                    @item.Description;
-                                </p>
-                                <div class="footer">
-                                    <div class="author">
-                                        <a href="#pablo">
-                                            <img src="~/images/sample (3).jpg" alt="..." class="avatar img-raised">
-                                            <span>@item.Owner</span>
-                                        </a>
-                                    </div>
-                                    <div class="stats">
-                                        <i class="material-icons">schedule</i> @item.Renumeration
-                                    </div>
+                            <h4 class="card-title">
+                                <a href="#pablo">@item.Title</a>
+                            </h4>
+                            <p class="card-description" style="word-break: break-all">
+                                @item.Description;
+                            </p>
+                            <div class="footer">
+                                <div class="author">
+                                    <a href="#pablo">
+                                        @*<img src="~/images/sample (3).jpg" alt="..." class="avatar img-raised">*@
+                                        <span>@item.Owner</span>
+                                    </a>
+                                </div>
+                                <div class="stats">
+                                    <i class="material-icons">attach_money</i> @item.Renumeration
                                 </div>
                             </div>
                         </div>
-
                     </div>
+
+                    @*</div>*@
                 }
 
 
