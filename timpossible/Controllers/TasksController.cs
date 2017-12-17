@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using timpossible.Data;
 using timpossible.Models;
+using timpossible.Services;
 
 namespace timpossible.Controllers
 {
@@ -17,33 +18,44 @@ namespace timpossible.Controllers
         }
 
         // GET: Tasks
-        public async Task<IActionResult> Index(string s,string sortOrder)
+        public async Task<IActionResult> Index(string s, string sortOrder, string currentFilter, int? page)
         {
             IQueryable<iTask> tasks;
-            //ViewData["NameSortParm"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            //ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
-         
-            tasks = !string.IsNullOrEmpty(s) ? _context.Tasks.Where(t => t.Title.Contains(s) || t.Description.Contains(s) || s==null) : _context.Tasks;
-            //switch (sortOrder)
-            //{
-            //    case "distance":
-            //        tasks = tasks.OrderByDescending(t => t.Location);
-            //        break;
-            //    case "name_desc":
-            //        tasks = tasks.OrderByDescending(t => t.Title);
-            //        break;
-            //    case "Date":
-            //        tasks = tasks.OrderBy(t => t.CreationDate);
-            //        break;
-            //    case "date_desc":
-            //        tasks = tasks.OrderByDescending(t => t.CreationDate);
-            //        break;
-            //    default:
-            //        tasks = tasks.OrderBy(t => t.Title);
-            //        break;
-            //}
+            ViewData["CurrentSort"] = sortOrder;
 
-            return View(await tasks.AsNoTracking().ToListAsync());
+            ViewData["NameSortParm"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (s != null)
+                page = 1;
+            else
+                s = currentFilter;
+
+            ViewData["CurrentFilter"] = s;
+            tasks = !string.IsNullOrEmpty(s)
+                ? _context.Tasks.Where(t => t.Title.Contains(s) || t.Description.Contains(s) || s == null)
+                : _context.Tasks;
+            switch (sortOrder)
+            {
+                case "distance":
+                    tasks = tasks.OrderByDescending(t => t.Location);
+                    break;
+                case "name_desc":
+                    tasks = tasks.OrderByDescending(t => t.Title);
+                    break;
+                case "Date":
+                    tasks = tasks.OrderBy(t => t.CreationDate);
+                    break;
+                case "date_desc":
+                    tasks = tasks.OrderByDescending(t => t.CreationDate);
+                    break;
+                default:
+                    tasks = tasks.OrderBy(t => t.Title);
+                    break;
+            }
+
+            var pageSize = 12;
+            return View(await PagedList.PaginatedList<iTask>.CreateAsync(tasks.AsNoTracking(), page ?? 1, pageSize));
         }
 
         // GET: Tasks/Details/5

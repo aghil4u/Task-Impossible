@@ -1,4 +1,5 @@
-﻿@model IEnumerable<iTask>
+﻿@using Microsoft.AspNetCore.Mvc.RazorPages
+@model timpossible.Services.PagedList.PaginatedList<iTask>
 
 @{
     ViewData["Title"] = "Explore Tasks";
@@ -41,10 +42,10 @@
                     </li>
                 </ul>
             </div>*@
-            <select class="selectpicker" data-style="btn btn-primary btn-round" title="Sort By" data-size="7" onchange = "window.location.href='/Tasks?sortOrder=' + this.value;" tabindex="-98">
+            <select class="selectpicker" data-style="btn btn-primary btn-round" title="Sort By" data-size="7" onchange="window.location.href = '/Tasks?sortOrder=' + this.value;" tabindex="-98">
                 <option class="bs-title-option" value="">Sort By</option>
-              
-                <option value="Title" >Distance</option>
+
+                <option value="Title">Distance</option>
                 <option value="Date">Date</option>
             </select>
         </div>
@@ -59,30 +60,27 @@
         <div class="col-sm-3">
             <div class="card" style="height: 50rem; width: 100%">
 
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.Title)</a>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">@Html.DisplayNameFor(model => model.CreationDate)</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["currentFilter"]">Title</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["currentFilter"]">Date</a>
 
 
                 <div class="card-content">
                     <form action="/Tasks" method="get" id="searchForum">
                         <div class="form-group is-empty" style="width: 100%;">
-                            <input type="text" id="s" name="s" class="form-control" placeholder="Search">
+                            <input type="text" id="s" name="s" class="form-control" placeholder="Search" value="@ViewData["currentFilter"]">
 
                         </div>
                     </form>
 
 
-
-
-
-
-
-
-                    <div class="footer pull-center text-center" style="width: auto; position: absolute; bottom: 0px; left: 0px; right: 0px"> <button type="submit" form="searchForum" class="btn btn-rose btn-raised btn-round" style="">
+                    <div class="footer pull-center text-center" style="bottom: 0px; left: 0px; position: absolute; right: 0px; width: auto;">
+                        <button type="submit" form="searchForum" class="btn btn-rose btn-raised btn-round" style="">
                             Update
-                            <div class="ripple-container"></div></button>
-                        
-                    </div></div>
+                            <div class="ripple-container"></div>
+                        </button>
+
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-sm-9">
@@ -148,6 +146,58 @@
 
 </div>
 
+<div class="container">
+
+    @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+
+
+    <ul class="pagination pagination-primary" >
+        <li>
+            <a asp-action="Index"
+               asp-route-sortOrder="@ViewData["CurrentSort"]"
+               asp-route-page="@(Model.PageIndex - 1)"
+               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+               class="btn btn-default @prevDisabled">
+                prev
+            </a>
+        </li>
+        @for (int i = 1; i < Model.TotalPages+1; i++)
+        {
+            if (i==Model.PageIndex)
+            {
+            <li class="=active">
+                <a>@i</a>
+            </li>
+            }
+            else
+            {
+                <li>
+                    <a asp-action="Index"
+                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                       asp-route-page="@(@i)"
+                       asp-route-currentFilter="@ViewData["CurrentFilter"]">@i</a>
+                </li>
+            }
+        }
+        
+        <li>
+            <a asp-action="Index"
+               asp-route-sortOrder="@ViewData["CurrentSort"]"
+               asp-route-page="@(Model.PageIndex + 1)"
+               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+               class="btn btn-default @nextDisabled">
+                next
+                <div class="ripple-container"></div>
+            </a>
+        </li>
+    </ul>
+
+</div>
+
+
 <script src="~/lib/jquery/dist/jquery.js"></script>
 
 <script type="text/javascript">
@@ -159,134 +209,3 @@
         window.location.href = '/myController/myAction/' + dropDownValue;
     }
 </script>
-
-@*<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Owner)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Category)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Type)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Location)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Lat)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Lon)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Radius)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NegotiationMarker)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreationDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TargetDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ClosingDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Renumeration)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PaymentTerms)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Currency)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CoverPhoto)
-        </th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Owner)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Location)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Lat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Lon)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Radius)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NegotiationMarker)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreationDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TargetDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ClosingDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Renumeration)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaymentTerms)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Currency)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CoverPhoto)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-    }
-    </tbody>
-</table>*@
