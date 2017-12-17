@@ -3,13 +3,87 @@
 @{
     ViewData["Title"] = "Explore Tasks";
 }
+<div class="container" style="margin-bottom: 2rem; margin-top: 20rem;">
+
+    <div class="col-sm-2 col-sm-offset-10">
+
+        <div class="btn-group bootstrap-select">
+            @*<button type="button" class="dropdown-toggle btn btn-primary btn-round" data-toggle="dropdown" role="button" title="Is great" aria-expanded="false">
+                <span class="filter-option pull-left">Is great</span>&nbsp;<span class="bs-caret">
+                    <span class="caret"></span>
+                </span>
+                <div class="ripple-container"></div>
+            </button>
+            <div class="dropdown-menu open" role="combobox">
+                <ul class="dropdown-menu inner" role="listbox" aria-expanded="false">
+                    <li data-original-index="1" class="disabled">
+                        <a tabindex="-1" class="" data-tokens="null" role="option" href="#" aria-disabled="true" aria-selected="false">
+                            <span class="text">Choose city</span><span class="material-icons  check-mark"> done </span>
+                        </a>
+                    </li><li data-original-index="2" class="">
+                        <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false">
+                            <span class="text">Foobar</span><span class="material-icons  check-mark"> done </span>
+                            <div class="ripple-container">
+                                <div class="ripple ripple-on ripple-out" style="background-color: rgb(164, 164, 164); left: 113px; top: 1.40625px; transform: scale(25.4688);"></div>
+                                <div class="ripple ripple-on ripple-out" style="background-color: rgb(255, 255, 255); left: 75px; top: 13.4063px; transform: scale(25.4688);"></div>
+                                <div class="ripple ripple-on ripple-out" style="background-color: rgb(255, 255, 255); left: 124px; top: 17.4063px; transform: scale(25.4688);"></div>
+                            </div>
+                        </a>
+                    </li><li data-original-index="3" class="selected">
+                        <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="true">
+                            <span class="text">Is great</span><span class="material-icons  check-mark"> done </span>
+                            <div class="ripple-container">
+                                <div class="ripple ripple-on ripple-out" style="background-color: rgb(255, 255, 255); left: 108px; top: 7.40625px; transform: scale(25.4688);"></div>
+                                <div class="ripple ripple-on ripple-out" style="background-color: rgb(255, 255, 255); left: 97px; top: 9.40625px; transform: scale(25.4688);"></div>
+                                <div class="ripple ripple-on ripple-out" style="background-color: rgb(255, 255, 255); left: 77px; top: 16.4063px; transform: scale(25.4688);"></div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>*@
+            <select class="selectpicker" data-style="btn btn-primary btn-round" title="Sort By" data-size="7" onchange = "window.location.href='/Tasks?sortOrder=' + this.value;" tabindex="-98">
+                <option class="bs-title-option" value="">Sort By</option>
+              
+                <option value="Title" >Distance</option>
+                <option value="Date">Date</option>
+            </select>
+        </div>
 
 
-<div class="cards" style="margin-top: 20rem">
+    </div>
+</div>
+
+<div class="cards">
 
     <div class="container">
         <div class="col-sm-3">
-            <div class="card" style="height: 50rem; width: 100%"></div>
+            <div class="card" style="height: 50rem; width: 100%">
+
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.Title)</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">@Html.DisplayNameFor(model => model.CreationDate)</a>
+
+
+                <div class="card-content">
+                    <form action="/Tasks" method="get" id="searchForum">
+                        <div class="form-group is-empty" style="width: 100%;">
+                            <input type="text" id="s" name="s" class="form-control" placeholder="Search">
+
+                        </div>
+                    </form>
+
+
+
+
+
+
+
+
+                    <div class="footer pull-center text-center" style="width: auto; position: absolute; bottom: 0px; left: 0px; right: 0px"> <button type="submit" form="searchForum" class="btn btn-rose btn-raised btn-round" style="">
+                            Update
+                            <div class="ripple-container"></div></button>
+                        
+                    </div></div>
+            </div>
         </div>
         <div class="col-sm-9">
             <div class="card-columns">
@@ -73,6 +147,18 @@
     </div>
 
 </div>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.selectpicker').selectpicker();
+    });
+
+    function redirect(dropDownValue) {
+        window.location.href = '/myController/myAction/' + dropDownValue;
+    }
+</script>
 
 @*<p>
     <a asp-action="Create">Create New</a>

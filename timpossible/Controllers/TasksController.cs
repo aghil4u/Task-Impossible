@@ -17,9 +17,33 @@ namespace timpossible.Controllers
         }
 
         // GET: Tasks
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string s,string sortOrder)
         {
-            return View(await _context.Tasks.ToListAsync());
+            IQueryable<iTask> tasks;
+            //ViewData["NameSortParm"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            //ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+         
+            tasks = !string.IsNullOrEmpty(s) ? _context.Tasks.Where(t => t.Title.Contains(s) || t.Description.Contains(s) || s==null) : _context.Tasks;
+            //switch (sortOrder)
+            //{
+            //    case "distance":
+            //        tasks = tasks.OrderByDescending(t => t.Location);
+            //        break;
+            //    case "name_desc":
+            //        tasks = tasks.OrderByDescending(t => t.Title);
+            //        break;
+            //    case "Date":
+            //        tasks = tasks.OrderBy(t => t.CreationDate);
+            //        break;
+            //    case "date_desc":
+            //        tasks = tasks.OrderByDescending(t => t.CreationDate);
+            //        break;
+            //    default:
+            //        tasks = tasks.OrderBy(t => t.Title);
+            //        break;
+            //}
+
+            return View(await tasks.AsNoTracking().ToListAsync());
         }
 
         // GET: Tasks/Details/5
