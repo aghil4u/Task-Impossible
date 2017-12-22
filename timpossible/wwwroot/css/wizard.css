@@ -2614,3 +2614,12 @@ footer .pull-center {
     box-shadow: none;
     color: #FFFFFF;
 }
+
+#dtselector .pull-left {
+    display: inline-block;
+    float: none;
+}
+
+#todateselector {
+    transition: visibility 0s linear 0.33s, opacity 0.33s linear;
+}

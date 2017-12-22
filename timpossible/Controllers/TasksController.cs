@@ -18,24 +18,24 @@ namespace timpossible.Controllers
         }
 
         // GET: Tasks
-        public async Task<IActionResult> Index(string s, string sortOrder, string currentFilter, int? page)
+        public async Task<IActionResult> Index(string s, string so, string cf, int? page)
         {
             IQueryable<iTask> tasks;
-            ViewData["CurrentSort"] = sortOrder;
+            ViewData["cs"] = so;
 
-            ViewData["NameSortParm"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewData["NameSortParm"] = string.IsNullOrEmpty(so) ? "name_desc" : "";
+            ViewData["DateSortParm"] = so == "Date" ? "date_desc" : "Date";
 
             if (s != null)
                 page = 1;
             else
-                s = currentFilter;
+                s = cf;
 
-            ViewData["CurrentFilter"] = s;
+            ViewData["cf"] = s;
             tasks = !string.IsNullOrEmpty(s)
                 ? _context.Tasks.Where(t => t.Title.Contains(s) || t.Description.Contains(s) || s == null)
                 : _context.Tasks;
-            switch (sortOrder)
+            switch (so)
             {
                 case "distance":
                     tasks = tasks.OrderByDescending(t => t.Location);
