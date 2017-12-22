@@ -317,20 +317,20 @@
             17 != t.which &&
             20 != t.which &&
             27 != t.which
-            : !1
+            : !1;
     }
 
     function i(o) {
         var i = t(o);
-        i.prop("disabled") || i.closest(".form-group").addClass("is-focused")
+        i.prop("disabled") || i.closest(".form-group").addClass("is-focused");
     }
 
     function n(o) {
         o.closest("label").hover(function() {
                 var o = t(this).find("input");
-                o.prop("disabled") || i(o)
+                o.prop("disabled") || i(o);
             },
-            function() { e(t(this).find("input")) })
+            function() { e(t(this).find("input")) });
     }
 
     function e(o) { t(o).closest(".form-group").removeClass("is-focused") }
@@ -358,17 +358,17 @@
         checkbox: function(o) {
             var i = t(o ? o : this.options.checkboxElements).filter(":notmdproc").data("mdproc", !0)
                 .after("<span class='checkbox-material'><span class='check'></span></span>");
-            n(i)
+            n(i);
         },
         togglebutton: function(o) {
             var i = t(o ? o : this.options.togglebuttonElements).filter(":notmdproc").data("mdproc", !0)
                 .after("<span class='toggle'></span>");
-            n(i)
+            n(i);
         },
         radio: function(o) {
             var i = t(o ? o : this.options.radioElements).filter(":notmdproc").data("mdproc", !0)
                 .after("<span class='circle'></span><span class='check'></span>");
-            n(i)
+            n(i);
         },
         input: function(o) {
             t(o ? o : this.options.inputElements).filter(":notmdproc").data("mdproc", !0).each(function() {
@@ -386,12 +386,12 @@
                         r +
                         "class='control-label'>" +
                         e +
-                        "</label>")
+                        "</label>");
                 }
                 (null === o.val() || "undefined" == o.val() || "" === o.val()) && i.addClass("is-empty"),
                     i.append("<span class='material-input'></span>"), i.find("input[type=file]").length > 0 &&
-                        i.addClass("is-fileinput")
-            })
+                        i.addClass("is-fileinput");
+            });
         },
         attachInputEventHandlers: function() {
             var n = this.options.validate;
@@ -405,7 +405,7 @@
                             i = o.closest(".form-group"),
                             e = "undefined" == typeof o[0].checkValidity || o[0].checkValidity();
                         "" === o.val() ? i.addClass("is-empty") : i.removeClass("is-empty"), n &&
-                            (e ? i.removeClass("has-error") : i.addClass("has-error"))
+                            (e ? i.removeClass("has-error") : i.addClass("has-error"));
                     }).on("focus", ".form-control, .form-group.is-fileinput", function() { i(this) })
                 .on("blur", ".form-control, .form-group.is-fileinput", function() { e(this) }).on("change",
                     ".form-group input",
@@ -413,7 +413,7 @@
                         var o = t(this);
                         if ("file" != o.attr("type")) {
                             var i = o.closest(".form-group"), n = o.val();
-                            n ? i.removeClass("is-empty") : i.addClass("is-empty")
+                            n ? i.removeClass("is-empty") : i.addClass("is-empty");
                         }
                     }).on("change",
                     ".form-group.is-fileinput input[type='file']",
@@ -421,19 +421,19 @@
                         var o = t(this), i = o.closest(".form-group"), n = "";
                         t.each(this.files, function(t, o) { n += o.name + ", " }), n =
                             n.substring(0, n.length - 2), n ? i.removeClass("is-empty") : i.addClass("is-empty"), i
-                            .find("input.form-control[readonly]").val(n)
-                    })
+                            .find("input.form-control[readonly]").val(n);
+                    });
         },
         ripples: function(o) { t(o ? o : this.options.withRipples).ripples() },
         autofill: function() {
             var o = setInterval(function() {
                     t("input[type!=checkbox]").each(function() {
                         var o = t(this);
-                        o.val() && o.val() !== o.attr("value") && o.trigger("change")
-                    })
+                        o.val() && o.val() !== o.attr("value") && o.trigger("change");
+                    });
                 },
                 100);
-            setTimeout(function() { clearInterval(o) }, 1e4)
+            setTimeout(function() { clearInterval(o) }, 1e4);
         },
         attachAutofillEventHandlers: function() {
             var o;
@@ -444,11 +444,11 @@
                     o = setInterval(function() {
                             i.each(function() {
                                 var o = t(this);
-                                o.val() !== o.attr("value") && o.trigger("change")
-                            })
+                                o.val() !== o.attr("value") && o.trigger("change");
+                            });
                         },
-                        100)
-                }).on("blur", ".form-group input", function() { clearInterval(o) })
+                        100);
+                }).on("blur", ".form-group input", function() { clearInterval(o) });
         },
         init: function(o) {
             this.options = t.extend({}, this.options, o);
@@ -470,15 +470,15 @@
                             i.arrive(this.options.radioElements, function() { t.material.radio(t(this)) }),
                         this.options.togglebutton &&
                             i.arrive(this.options.togglebuttonElements,
-                                function() { t.material.togglebutton(t(this)) }))
+                                function() { t.material.togglebutton(t(this)) }));
         }
-    }
+    };
 }(jQuery), function(t, o, i, n) {
     "use strict";
 
     function e(o, i) {
         r = this, this.element = t(o), this.options = t.extend({}, s, i), this._defaults = s, this._name =
-            a, this.init()
+            a, this.init();
     }
 
     var a = "ripples", r = null, s = {};
@@ -493,30 +493,30 @@
                             var l = r.getRipplesColor(i), p = t("<div></div>");
                             p.addClass("ripple").css({ left: s, top: a, "background-color": l }), e.append(p),
                                 function() {
-                                    return o.getComputedStyle(p[0]).opacity
+                                    return o.getComputedStyle(p[0]).opacity;
                                 }(), r.rippleOn(i, p), setTimeout(function() { r.rippleEnd(p) }, 500), i.on(
                                     "mouseup mouseleave touchend",
                                     function() {
-                                        p.data("mousedown", "off"), "off" === p.data("animating") && r.rippleOut(p)
-                                    })
+                                        p.data("mousedown", "off"), "off" === p.data("animating") && r.rippleOut(p);
+                                    });
                         }
                     }
-                })
+                });
         }, e.prototype.getNewSize =
             function(t, o) { return Math.max(t.outerWidth(), t.outerHeight()) / o.outerWidth() * 2.5 },
         e.prototype.getRelX = function(t, o) {
             var i = t.offset();
             return r.isTouch()
                 ? (o = o.originalEvent, 1 === o.touches.length ? o.touches[0].pageX - i.left : !1)
-                : o.pageX - i.left
+                : o.pageX - i.left;
         }, e.prototype.getRelY = function(t, o) {
             var i = t.offset();
             return r.isTouch()
                 ? (o = o.originalEvent, 1 === o.touches.length ? o.touches[0].pageY - i.top : !1)
-                : o.pageY - i.top
+                : o.pageY - i.top;
         }, e.prototype.getRipplesColor = function(t) {
             var i = t.data("ripple-color") ? t.data("ripple-color") : o.getComputedStyle(t[0]).color;
-            return i
+            return i;
         }, e.prototype.hasTransitionSupport = function() {
             var t = i.body || i.documentElement,
                 o = t.style,
@@ -525,10 +525,10 @@
                     o.MozTransition !== n ||
                     o.MsTransition !== n ||
                     o.OTransition !== n;
-            return e
+            return e;
         }, e.prototype.isTouch =
             function() {
-                return/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+                return/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
             },
         e.prototype.rippleEnd =
             function(t) { t.data("animating", "off"), "off" === t.data("mousedown") && r.rippleOut(t) },
@@ -537,7 +537,7 @@
                 ? t.addClass("ripple-out")
                 : t.animate({ opacity: 0 }, 100, function() { t.trigger("transitionend") }), t.on(
                 "transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd",
-                function() { t.remove() })
+                function() { t.remove() });
         }, e.prototype.rippleOn = function(t, o) {
             var i = r.getNewSize(t, o);
             r.hasTransitionSupport()
@@ -555,8 +555,8 @@
                         opacity: .2
                     },
                     500,
-                    function() { o.trigger("transitionend") })
+                    function() { o.trigger("transitionend") });
         }, t.fn.ripples = function(o) {
-            return this.each(function() { t.data(this, "plugin_" + a) || t.data(this, "plugin_" + a, new e(this, o)) })
-        }
+            return this.each(function() { t.data(this, "plugin_" + a) || t.data(this, "plugin_" + a, new e(this, o)) });
+        };
 }(jQuery, window, document);

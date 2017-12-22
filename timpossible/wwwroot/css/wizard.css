@@ -2620,6 +2620,4 @@ footer .pull-center {
     float: none;
 }
 
-#todateselector {
-    transition: visibility 0s linear 0.33s, opacity 0.33s linear;
-}
+#todateselector { transition: visibility 0s linear 0.33s, opacity 0.33s linear; }
