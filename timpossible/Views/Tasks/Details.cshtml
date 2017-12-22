@@ -28,7 +28,7 @@
     <div class="tab-content">
         <div class="tab-pane" id="product-page1">
 
-            <img src="~/images/sample (1).jpg"/>
+            <img src="~/images/sample (1).jpg" style="width: 100%"/>
         </div>
         <div class="tab-pane active" id="product-page2">
 
@@ -128,9 +128,9 @@
 <div class="col-md-6 col-sm-6">
     <h2 class="title"> @Model.Title </h2>
     <h3 class="main-price">$@Model.Renumeration</h3>
-    <div id="acordeon">
-        <div class="panel-group" id="accordion">
-            <div class="panel panel-border panel-default">
+    @*<div id="acordeon">
+        <div class="panel-group" id="accordion">*@
+            <div class="panel panel-border panel-default" style="margin-top: -2rem">
                 <div class="panel-heading" role="tab" id="headingOne">
                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                         <h4 class="panel-title">
@@ -145,50 +145,17 @@
                     </div>
                 </div>
             </div>
-            <div class="panel panel-border panel-default">
-                <div class="panel-heading" role="tab" id="headingOne">
-                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-controls="collapseOne">
-                        <h4 class="panel-title">
-                            Designer Information
-                            <i class="material-icons">keyboard_arrow_down</i>
-                        </h4>
-                    </a>
-                </div>
-                <div id="collapseTwo" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        An infusion of West Coast cool and New York attitude, Rebecca Minkoff is synonymous with It girl style. Minkoff burst on the fashion scene with her best-selling 'Morning After Bag' and later expanded her offering with the Rebecca Minkoff Collection - a range of luxe city staples with a "downtown romantic" theme.
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-border panel-default">
-                <div class="panel-heading" role="tab" id="headingOne">
-                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-controls="collapseOne">
-                        <h4 class="panel-title">
-                            Details and Care
-                            <i class="material-icons">keyboard_arrow_down</i>
-                        </h4>
-                    </a>
-                </div>
-                <div id="collapseThree" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        <ul>
-                            <li>Storm and midnight-blue stretch cotton-blend</li>
-                            <li>Notch lapels, functioning buttoned cuffs, two front flap pockets, single vent, internal pocket</li>
-                            <li>Two button fastening</li>
-                            <li>84% cotton, 14% nylon, 2% elastane</li>
-                            <li>Dry clean</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
 
-        </div>
-    </div><!-- end acordeon -->
 
+
+        @*</div>
+    </div>*@<!-- end acordeon -->
+    
+    <div id="map" class="big-map" style="height: 200px; width: 100%;"></div>
     <div class="row pick-size">
         <div class="col-md-6 col-sm-6">
-            <label>Select color</label>
-            <div class="btn-group bootstrap-select">
+            <label></label>
+            @*<div class="btn-group bootstrap-select">
                 <button type="button" class="btn dropdown-toggle select-with-transition" data-toggle="dropdown" role="button" title="Rose">
                     <span class="filter-option pull-left">Rose </span>&nbsp;<span class="bs-caret">
                         <span class="caret"></span>
@@ -215,11 +182,11 @@
                     <option value="2">Gray</option>
                     <option value="3">White</option>
                 </select>
-            </div>
+            </div>*@
         </div>
         <div class="col-md-6 col-sm-6">
-            <label>Select size</label>
-            <div class="btn-group bootstrap-select">
+            <label></label>
+            @*<div class="btn-group bootstrap-select">
                 <button type="button" class="btn dropdown-toggle select-with-transition" data-toggle="dropdown" role="button" title="Small">
                     <span class="filter-option pull-left">Small </span>&nbsp;<span class="bs-caret">
                         <span class="caret"></span>
@@ -246,18 +213,20 @@
                     <option value="2">Medium</option>
                     <option value="3">Large</option>
                 </select>
-            </div>
+            </div>*@
         </div>
     </div>
-    <div class="row text-right">
-        <button class="btn btn-rose btn-round"><i class="material-icons" style="margin-left: -5px; margin-right: 5px">done</i>LET ME DO THIS &nbsp;</button>
+    <div class="card-footer" style="margin-bottom: -2rem">
+        <div class="row text-right">
+            <button class="btn btn-rose btn-round"><i class="material-icons" style="margin-left: -5px; margin-right: 5px">done</i>LET ME DO THIS &nbsp;</button>
+        </div>
     </div>
 </div>
 </div>
 </div>
 
 <div class="features text-center">
-    <h3 class="title text-center">How it wroks?</h3>
+    <h3 class="title text-center">How it works?</h3>
     <div class="row">
         <div class="col-md-4">
             <div class="info">
@@ -555,3 +524,40 @@
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>*@
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+
+    var map, pos, marker;
+
+    function initMap() {
+        
+        pos = { lat: @Model.Lat, lng: @Model.Lon };
+        map = new google.maps.Map(document.getElementById('map'),
+            {
+                center: pos,
+                zoom: 10,
+                zoomControl: true,
+                mapTypeControl: false,
+                scaleControl: false,
+                streetViewControl: false,
+                rotateControl: false,
+                fullscreenControl: true,
+                geolocationControl: true
+            });
+        marker = new google.maps.Marker({
+            map: map,
+            position: pos,
+            title: "@Model.Location",
+        });
+        marker.setMap(map);
+
+
+    }
+
+   
+</script>
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvbpO6ps576pAmEBvWg9yTrjGrgyy4nCU&callback=initMap">
+</script>
