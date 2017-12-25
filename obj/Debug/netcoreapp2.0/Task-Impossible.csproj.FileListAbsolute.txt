@@ -1,0 +1,12 @@
+C:\Users\idkwim\Documents\GitHub\Task-Impossible\Task-Impossible\obj\Debug\netcoreapp2.0\Task-Impossible.csprojResolveAssemblyReference.cache
+C:\Users\idkwim\Documents\GitHub\Task-Impossible\Task-Impossible\obj\Debug\netcoreapp2.0\Task-Impossible.csproj.CoreCompileInputs.cache
+C:\Users\idkwim\Documents\GitHub\Task-Impossible\Task-Impossible\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+C:\Users\idkwim\Documents\GitHub\Task-Impossible\Task-Impossible\obj\Debug\netcoreapp2.0\Task-Impossible.AssemblyInfoInputs.cache
+C:\Users\idkwim\Documents\GitHub\Task-Impossible\Task-Impossible\obj\Debug\netcoreapp2.0\Task-Impossible.AssemblyInfo.cs
+C:\Users\idkwim\Documents\GitHub\Task-Impossible\Task-Impossible\bin\Debug\netcoreapp2.0\Task-Impossible.deps.json
+C:\Users\idkwim\Documents\GitHub\Task-Impossible\Task-Impossible\bin\Debug\netcoreapp2.0\Task-Impossible.runtimeconfig.json
+C:\Users\idkwim\Documents\GitHub\Task-Impossible\Task-Impossible\bin\Debug\netcoreapp2.0\Task-Impossible.runtimeconfig.dev.json
+C:\Users\idkwim\Documents\GitHub\Task-Impossible\Task-Impossible\bin\Debug\netcoreapp2.0\Task-Impossible.dll
+C:\Users\idkwim\Documents\GitHub\Task-Impossible\Task-Impossible\bin\Debug\netcoreapp2.0\Task-Impossible.pdb
+C:\Users\idkwim\Documents\GitHub\Task-Impossible\Task-Impossible\obj\Debug\netcoreapp2.0\Task-Impossible.dll
+C:\Users\idkwim\Documents\GitHub\Task-Impossible\Task-Impossible\obj\Debug\netcoreapp2.0\Task-Impossible.pdb

@@ -1,0 +1,12 @@
+C:\Users\idkwim\Documents\Repo\timpossible\timpossible\bin\Release\netcoreapp2.0\timpossible.deps.json
+C:\Users\idkwim\Documents\Repo\timpossible\timpossible\bin\Release\netcoreapp2.0\timpossible.runtimeconfig.json
+C:\Users\idkwim\Documents\Repo\timpossible\timpossible\bin\Release\netcoreapp2.0\timpossible.runtimeconfig.dev.json
+C:\Users\idkwim\Documents\Repo\timpossible\timpossible\bin\Release\netcoreapp2.0\timpossible.dll
+C:\Users\idkwim\Documents\Repo\timpossible\timpossible\bin\Release\netcoreapp2.0\timpossible.pdb
+C:\Users\idkwim\Documents\Repo\timpossible\timpossible\obj\Release\netcoreapp2.0\timpossible.csproj.CoreCompileInputs.cache
+C:\Users\idkwim\Documents\Repo\timpossible\timpossible\obj\Release\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+C:\Users\idkwim\Documents\Repo\timpossible\timpossible\obj\Release\netcoreapp2.0\timpossible.AssemblyInfoInputs.cache
+C:\Users\idkwim\Documents\Repo\timpossible\timpossible\obj\Release\netcoreapp2.0\timpossible.AssemblyInfo.cs
+C:\Users\idkwim\Documents\Repo\timpossible\timpossible\obj\Release\netcoreapp2.0\timpossible.dll
+C:\Users\idkwim\Documents\Repo\timpossible\timpossible\obj\Release\netcoreapp2.0\timpossible.pdb
+C:\Users\idkwim\Documents\Repo\timpossible\timpossible\obj\Release\netcoreapp2.0\timpossible.csprojResolveAssemblyReference.cache
