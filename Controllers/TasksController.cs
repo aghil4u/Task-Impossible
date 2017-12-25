@@ -5,6 +5,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using FineUploader;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TaskImpossible.Data;
@@ -179,47 +180,19 @@ namespace TaskImpossible.Controllers
             return _context.Tasks.Any(e => e.Id == id);
         }
 
+
         [HttpPost]
-        public IActionResult Upload()
+        public async Task<IActionResult> UploadFile(IFormFile file)
         {
-            long size = 0;
-            var files = Request.Form.Files;
-            foreach (var file in files)
+            var uploads = Path.Combine(_environment.WebRootPath, "Uploads");
+            if (file.Length > 0)
             {
-                var filename = ContentDispositionHeaderValue
-                    .Parse(file.ContentDisposition)
-                    .FileName
-                    .Trim('"');
-                filename = _environment.WebRootPath + $@"\Uploads\{filename}";
-                size += file.Length;
-                using (FileStream fs = System.IO.File.Create(filename))
+                using (var fileStream = new FileStream(Path.Combine(uploads, file.FileName), FileMode.Create))
                 {
-                    file.CopyTo(fs);
-                    fs.Flush();
+                    await file.CopyToAsync(fileStream);
                 }
             }
-            string message = $"{files.Count} file(s) / { size} bytes uploaded successfully!";
-            return Json(message);
-        }
-
-        [HttpPost]
-        public FineUploaderResult UploadFile(FineUpload upload, string extraParam1, int extraParam2)
-        {
-            // asp.net mvc will set extraParam1 and extraParam2 from the params object passed by Fine-Uploader
-
-            var dir = _environment.WebRootPath + @"\Uploads\";
-            var filePath = Path.Combine(dir, upload.Filename);
-            try
-            {
-                upload.SaveAs(filePath);
-            }
-            catch (Exception ex)
-            {
-                return new FineUploaderResult(false, error: ex.Message);
-            }
-
-            // the anonymous object in the result below will be convert to json and set back to the browser
-            return new FineUploaderResult(true, new { extraInformation = 12345 });
+            return RedirectToAction("Index");
         }
     }
 }
