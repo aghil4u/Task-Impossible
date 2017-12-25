@@ -6,9 +6,9 @@
 }
 
 <!-- Fine Uploader Gallery CSS file
-  ====================================================================== -->
+====================================================================== -->
 
-<link href="~/css/fug.min.css" rel="stylesheet" />
+<link href="~/css/fug.min.css" rel="stylesheet"/>
 <!-- Fine Uploader JS file
 ====================================================================== -->
 
@@ -94,218 +94,217 @@
 
 <!-- Big container -->
 <div class="container">
-    <div class="row">
-        <div class="col-sm-8 col-sm-offset-2">
-            <!-- Wizard container -->
-            <div class="wizard-container">
-                <div class="card wizard-card" data-color="purple" id="wizard">
-                    <form asp-controller="Tasks" asp-action="Create" novalidate="novalidate">
+<div class="row">
+<div class="col-sm-8 col-sm-offset-2">
+<!-- Wizard container -->
+<div class="wizard-container">
+<div class="card wizard-card" data-color="purple" id="wizard">
+<form asp-controller="Tasks" asp-action="Create" novalidate="novalidate">
 
-                        <div class="wizard-header">
-                            <h3 class="wizard-title">
-                                Create A Task
-                            </h3>
-                            <h5>Let us walk you through this.</h5>
-                        </div>
-                        <div class="wizard-navigation">
-                            <ul class="nav nav-pills">
-                                <li class="active" style="width: 25%;">
-                                    <a href="#tasktitle" data-toggle="tab" aria-expanded="true">TITLE</a>
-                                </li>
-                                <li class="" style="width: 25%;">
-                                    <a href="#type" data-toggle="tab" aria-expanded="false">DETAILS</a>
-                                </li>
-                                <li class="" style="width: 25%;">
-                                    <a href="#fileUploadTab" data-toggle="tab" aria-expanded="false">Images</a>
-                                </li>
+<div class="wizard-header">
+    <h3 class="wizard-title">
+        Create A Task
+    </h3>
+    <h5>Let us walk you through this.</h5>
+</div>
+<div class="wizard-navigation">
+    <ul class="nav nav-pills">
+        <li class="active" style="width: 25%;">
+            <a href="#tasktitle" data-toggle="tab" aria-expanded="true">TITLE</a>
+        </li>
+        <li class="" style="width: 25%;">
+            <a href="#type" data-toggle="tab" aria-expanded="false">DETAILS</a>
+        </li>
+        <li class="" style="width: 25%;">
+            <a href="#fileUploadTab" data-toggle="tab" aria-expanded="false">Images</a>
+        </li>
 
-                                <li style="width: 25%;">
-                                    <a href="#loc" id="maptab" data-toggle="tab">Location</a>
-                                </li>
-                                <li style="width: 25%;">
-                                    <a href="#description" data-toggle="tab">Renumeration</a>
-                                </li>
-                                <li style="width: 25%;">
-                                    <a href="#last" data-toggle="tab">Finish</a>
-                                </li>
-                            </ul>
-                            <div class="moving-tab" style="transform: translate3d(-8px, 0px, 0px); transition: all 0.5s cubic-bezier(0.29, 1.42, 0.79, 1); width: 187.5px;">Title</div>
-                        </div>
+        <li style="width: 25%;">
+            <a href="#loc" id="maptab" data-toggle="tab">Location</a>
+        </li>
+        <li style="width: 25%;">
+            <a href="#description" data-toggle="tab">Renumeration</a>
+        </li>
+        <li style="width: 25%;">
+            <a href="#last" data-toggle="tab">Finish</a>
+        </li>
+    </ul>
+    <div class="moving-tab" style="transform: translate3d(-8px, 0px, 0px); transition: all 0.5s cubic-bezier(0.29, 1.42, 0.79, 1); width: 187.5px;">Title</div>
+</div>
 
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="tasktitle">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <h4 class="info-text"> In Short.</h4>
-                                    </div>
-                                    <div class="col-sm-8 col-sm-offset-2" style="margin-top: 2rem">
-                                        <div class="form-group label-floating is-empty">
-                                            <label class="control-label">I want a Tasker to...</label>
-                                            <input type="text" class="form-control" asp-for="Title" id="tasktitlefield">
+<div class="tab-content">
+    <div class="tab-pane active" id="tasktitle">
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="info-text"> In Short.</h4>
+            </div>
+            <div class="col-sm-8 col-sm-offset-2" style="margin-top: 2rem">
+                <div class="form-group label-floating is-empty">
+                    <label class="control-label">I want a Tasker to...</label>
+                    <input type="text" class="form-control" asp-for="Title" id="tasktitlefield">
 
-                                        </div>
-
-                                        <div class="row" style="margin-bottom: 5rem; text-align: center;">
-                                            <div class="btn-group bootstrap-select show-tick" id="dtselector" style="display: inline-block; width: fit-content;">
-                                                <select class="selectpicker" data-style="select-with-transition" name="DatePretext" data-size="7" tabindex="-98" style="text-transform: lowercase">
-                                                    <option value="1">On </option>
-                                                    <option value="2">Before</option>
-                                                    <option value="3">After</option>
-                                                    <option value="4">From</option>
-                                                </select>
-
-                                            </div>
-
-
-                                            <div class="form-group" style="display: inline-block;" id="fromDateSelector">
-                                                <input type="datetime" asp-for="StartDate" placeholder="Start Date" class="form-control datetimepicker" style="text-align: center; width: fit-content">
-
-                                            </div>
-
-                                            <div class="btn-group bootstrap-select show-tick hidegroup" id="etselector" style="display: inline-block; width: fit-content;">
-                                                <select class="selectpicker" data-style="select-with-transition" data-size="7" tabindex="-98" style="text-transform: lowercase">
-                                                    <option value="1">To </option>
-                                                    <option value="2">Until Unknown</option>
-                                                    <option value="3">For Ever</option>
-
-                                                </select>
-                                            </div>
-
-
-                                            <div class="form-group hidegroup" style="display: inline-block;" id="todateselector">
-
-                                                <input type="datetime" asp-for="EndDate" value="@DateTime.Now" placeholder="End Date" class="form-control datetimepicker">
-                                                <span class="material-input"></span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-
-                                </div>
-                            </div>
-
-
-                            <div class="tab-pane" id="type">
-                                <h4 class="info-text">Give us some details. </h4>
-                                <div class="row" style="margin-top: -2rem;">
-                                    <div class="col-sm-10 col-sm-offset-1">
-                                        <div class="form-group label-floating is-empty">
-                                            <label class="control-label">Task description</label>
-                                            <textarea class="form-control" asp-for="Description" placeholder="" rows="9"></textarea>
-                                            <span class="material-input"></span>
-                                            <span class="material-input"></span>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-
-                            </div>
-
-
-                            <div class="tab-pane" id="loc"style="margin-left: -15px; margin-right: -15px;">
-                                <h4 class="info-text"> Show us the location of the task. </h4>
-
-                                <div class="row">
-                                    <div class="col-sm-12">
-
-                                        <div id="map" class="big-map" style="height: 300px; width: 100%;"></div>
-
-                                        <div class="form-group" style="margin-left: 5rem; margin-right: 5rem; margin-top: -5px;">
-                                            <input type="text" id="locText" asp-for="Location" class="form-control">
-                                            <input type="text" id="lat-box" asp-for="Lat" class="form-control hidden">
-                                            <input type="text" id="lon-box" asp-for="Lon" class="form-control hidden">
-                                            <span class="material-input"></span>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="description">
-                                <div class="row">
-                                    <h4 class="info-text"> Tell us about your Budget. </h4>
-                                    <div class="col-sm-8 col-sm-offset-2" style="margin-top: 5rem">
-                                        <div class="form-group label-floating is-empty">
-                                            <label class="control-label">Im Ready to Pay...</label>
-                                            <input type="text" class="form-control" asp-for="Renumeration">
-                                            <span class="material-input"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="tab-pane" id="fileUploadTab">
-                                <div class="row">
-                                    <h4 class="info-text"> Tell us about your Budget. </h4>
-                                    <div class="col-sm-8 col-sm-offset-2" style="margin-top: 5rem">
-                                  
-                                        
-                                        
-                                        <!-- Fine Uploader DOM Element
-                                        ====================================================================== -->
-                                        <div id="fine-uploader-gallery"></div>
-
-                                        <!-- Your code to create an instance of Fine Uploader and bind to the DOM/template
-                                        ====================================================================== -->
-                                        <script>
-                                            var galleryUploader = new qq.FineUploader({
-                                                element: document.getElementById("fine-uploader-gallery"),
-                                                template: 'qq-template-gallery',
-                                                request: {
-                                                    endpoint: '/server/uploads'
-                                                },
-                                                thumbnails: {
-                                                    placeholders: {
-                                                        waitingPath: '/source/placeholders/waiting-generic.png',
-                                                        notAvailablePath: '/source/placeholders/not_available-generic.png'
-                                                    }
-                                                },
-                                                validation: {
-                                                    allowedExtensions: ['jpeg', 'jpg', 'gif', 'png']
-                                                }
-                                            });
-                                        </script>
-                                        
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="tab-pane" id="last">
-                                <div class="row">
-                                    <h4 class="info-text"> Review your Task Listing. </h4>
-                                    <div class="col-sm-6 col-sm-offset-1">
-                                        <div class="form-group label-floating is-empty">
-                                            <label class="control-label">Place description</label>
-                                            <textarea class="form-control" placeholder="" rows="9"></textarea>
-                                            <span class="material-input"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group label-floating">
-                                            <label class="control-label">Example</label>
-                                            <p class="description">"The place is really nice. We use it every sunday when we go fishing. It is so awesome."</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="wizard-footer">
-                            <div class="pull-right">
-                                <input type="button" class="btn btn-next btn-fill btn-primary btn-wd" name="next" value="Next">
-                                <input type="submit" class="btn btn-finish btn-fill btn-primary btn-wd" name="finish" value="Finish" style="display: none;">
-                            </div>
-                            <div class="pull-left">
-                                <input type="button" class="btn btn-previous btn-fill btn-default btn-wd disabled" name="previous" value="Previous">
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </form>
                 </div>
-            </div> <!-- wizard container -->
+
+                <div class="row" style="margin-bottom: 5rem; text-align: center;">
+                    <div class="btn-group bootstrap-select show-tick" id="dtselector" style="display: inline-block; width: fit-content;">
+                        <select class="selectpicker" data-style="select-with-transition" name="DatePretext" data-size="7" tabindex="-98" style="text-transform: lowercase">
+                            <option value="1">On </option>
+                            <option value="2">Before</option>
+                            <option value="3">After</option>
+                            <option value="4">From</option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group" style="display: inline-block;" id="fromDateSelector">
+                        <input type="datetime" asp-for="StartDate" placeholder="Start Date" class="form-control datetimepicker" style="text-align: center; width: fit-content">
+
+                    </div>
+
+                    <div class="btn-group bootstrap-select show-tick hidegroup" id="etselector" style="display: inline-block; width: fit-content;">
+                        <select class="selectpicker" data-style="select-with-transition" data-size="7" tabindex="-98" style="text-transform: lowercase">
+                            <option value="1">To </option>
+                            <option value="2">Until Unknown</option>
+                            <option value="3">For Ever</option>
+
+                        </select>
+                    </div>
+
+
+                    <div class="form-group hidegroup" style="display: inline-block;" id="todateselector">
+
+                        <input type="datetime" asp-for="EndDate" value="@DateTime.Now" placeholder="End Date" class="form-control datetimepicker">
+                        <span class="material-input"></span>
+                    </div>
+                </div>
+
+            </div>
+
+
         </div>
-    </div> <!-- row -->
+    </div>
+
+
+    <div class="tab-pane" id="type">
+        <h4 class="info-text">Give us some details. </h4>
+        <div class="row" style="margin-top: -2rem;">
+            <div class="col-sm-10 col-sm-offset-1">
+                <div class="form-group label-floating is-empty">
+                    <label class="control-label">Task description</label>
+                    <textarea class="form-control" asp-for="Description" placeholder="" rows="9"></textarea>
+                    <span class="material-input"></span>
+                    <span class="material-input"></span>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <div class="tab-pane" id="loc"style="margin-left: -15px; margin-right: -15px;">
+        <h4 class="info-text"> Show us the location of the task. </h4>
+
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div id="map" class="big-map" style="height: 300px; width: 100%;"></div>
+
+                <div class="form-group" style="margin-left: 5rem; margin-right: 5rem; margin-top: -5px;">
+                    <input type="text" id="locText" asp-for="Location" class="form-control">
+                    <input type="text" id="lat-box" asp-for="Lat" class="form-control hidden">
+                    <input type="text" id="lon-box" asp-for="Lon" class="form-control hidden">
+                    <span class="material-input"></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="tab-pane" id="description">
+        <div class="row">
+            <h4 class="info-text"> Tell us about your Budget. </h4>
+            <div class="col-sm-8 col-sm-offset-2" style="margin-top: 5rem">
+                <div class="form-group label-floating is-empty">
+                    <label class="control-label">Im Ready to Pay...</label>
+                    <input type="text" class="form-control" asp-for="Renumeration">
+                    <span class="material-input"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane" id="fileUploadTab">
+        <div class="row">
+            <h4 class="info-text"> Tell us about your Budget. </h4>
+            <div class="col-sm-8 col-sm-offset-2" style="margin-top: 5rem">
+
+
+                <!-- Fine Uploader DOM Element
+                ====================================================================== -->
+                <div id="fine-uploader-gallery"></div>
+
+                <!-- Your code to create an instance of Fine Uploader and bind to the DOM/template
+                ====================================================================== -->
+                <script>
+                    var galleryUploader = new qq.FineUploader({
+                        element: document.getElementById("fine-uploader-gallery"),
+                        template: 'qq-template-gallery',
+                        request: {
+                            endpoint: '/Tasks/UploadFile'
+                        },
+                        thumbnails: {
+                            placeholders: {
+                                waitingPath: '/source/placeholders/waiting-generic.png',
+                                notAvailablePath: '/source/placeholders/not_available-generic.png'
+                            }
+                        },
+                        validation: {
+                            allowedExtensions: ['jpeg', 'jpg', 'gif', 'png']
+                        }
+                    });
+                </script>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane" id="last">
+        <div class="row">
+            <h4 class="info-text"> Review your Task Listing. </h4>
+            <div class="col-sm-6 col-sm-offset-1">
+                <div class="form-group label-floating is-empty">
+                    <label class="control-label">Place description</label>
+                    <textarea class="form-control" placeholder="" rows="9"></textarea>
+                    <span class="material-input"></span>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group label-floating">
+                    <label class="control-label">Example</label>
+                    <p class="description">"The place is really nice. We use it every sunday when we go fishing. It is so awesome."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="wizard-footer">
+    <div class="pull-right">
+        <input type="button" class="btn btn-next btn-fill btn-primary btn-wd" name="next" value="Next">
+        <input type="submit" class="btn btn-finish btn-fill btn-primary btn-wd" name="finish" value="Finish" style="display: none;">
+    </div>
+    <div class="pull-left">
+        <input type="button" class="btn btn-previous btn-fill btn-default btn-wd disabled" name="previous" value="Previous">
+    </div>
+    <div class="clearfix"></div>
+</div>
+</form>
+</div>
+</div> <!-- wizard container -->
+</div>
+</div> <!-- row -->
 </div> <!-- big container -->
 
 <div class="footer">
