@@ -22,64 +22,60 @@
 <div class="section section-gray">
 <div class="container">
 <div class="main main-raised main-product">
-<div class="row">
-<div class="col-md-6 col-sm-6">
+    <div class="row">
+        <div class="col-md-6 col-sm-6">
 
-    <div class="tab-content">
-        <div class="tab-pane active" id="product-page1">
+            <div class="tab-content">
+                <div class="tab-pane active" id="product-page1">
 
-            <img src="@Model.CoverPhoto" style="width: 100%"/>
-        </div>
-      
-    </div>
-    <div class="nbs-flexisel-container">
-        <div class="nbs-flexisel-inner">
-            <ul class="nav flexi-nav nbs-flexisel-ul" role="tablist" id="flexiselDemo1" style="left: -772.5px;">
+                    <img src="@Model.CoverPhoto" style="width: 100%"/>
+                </div>
 
-              
-                <li class="nbs-flexisel-item" style="width: 128.75px;">
-                    <a href="#product-page1" role="tab" data-toggle="tab" aria-expanded="false">
-
-                        <img src="@Model.CoverPhoto"/>
-                    </a>
-                </li>
-        
-            </ul>
-            <div class="nbs-flexisel-nav-left">
-                <i class="material-icons">chevron_left</i>
             </div>
-            <div class="nbs-flexisel-nav-right">
-                <i class="material-icons">chevron_right</i>
+            <div class="nbs-flexisel-container">
+                <div class="nbs-flexisel-inner">
+                    <ul class="nav flexi-nav nbs-flexisel-ul" role="tablist" id="flexiselDemo1" style="left: -772.5px;">
+
+
+                        <li class="nbs-flexisel-item" style="width: 128.75px;">
+                            <a href="#product-page1" role="tab" data-toggle="tab" aria-expanded="false">
+
+                                <img src="@Model.CoverPhoto"/>
+                            </a>
+                        </li>
+
+                    </ul>
+                    <div class="nbs-flexisel-nav-left">
+                        <i class="material-icons">chevron_left</i>
+                    </div>
+                    <div class="nbs-flexisel-nav-right">
+                        <i class="material-icons">chevron_right</i>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-<div class="col-md-6 col-sm-6">
-    <h2 class="title" style="margin-bottom: -1rem" > @Model.Title </h2>
-    
-    @switch (Model.DatePretext)
-        {
-            case 1:
-                <h6 class="category text-success">ON  @Model.StartDate.ToString("dddd dd-MM-yy H:mm tt") </h6>
-                break;
-            case 2:
-                <h6 class="category text-success">BEFORE  @Model.StartDate.ToString("dddd dd-MM-yy H:mm tt") </h6>
-                break;
-            case 3:
-                <h6 class="category text-success">AFTER  @Model.StartDate.ToString("dddd dd-MM-yy H:mm tt") </h6>
-                break;
-            case 4:
-                <h6 class="category text-success">FROM  @Model.StartDate.ToString("dddd dd-MM-yy")   TO @Model.EndDate.ToString("dddd dd-MM-yy")</h6>
-                break;
-            
+        <div class="col-md-6 col-sm-6">
+            <h2 class="title" style="margin-bottom: -1rem"> @Model.Title </h2>
 
-        }
+            @switch (Model.DatePretext)
+            {
+                case 1:
+                    <h6 class="category text-success">ON @Model.StartDate.ToString("dddd dd-MM-yy H:mm tt") </h6>
+                    break;
+                case 2:
+                    <h6 class="category text-success">BEFORE @Model.StartDate.ToString("dddd dd-MM-yy H:mm tt") </h6>
+                    break;
+                case 3:
+                    <h6 class="category text-success">AFTER @Model.StartDate.ToString("dddd dd-MM-yy H:mm tt") </h6>
+                    break;
+                case 4:
+                    <h6 class="category text-success">FROM @Model.StartDate.ToString("dddd dd-MM-yy") TO @Model.EndDate.ToString("dddd dd-MM-yy")</h6>
+                    break;
+            }
 
 
-
-
-    <h3 class="main-price" style="margin-top:-1rem" >$@Model.Renumeration</h3>
-    @*<div id="acordeon">
+            <h3 class="main-price" style="margin-top: -1rem">$@Model.Renumeration</h3>
+            @*<div id="acordeon">
         <div class="panel-group" id="accordion">*@
             <div class="panel panel-border panel-default" style="margin-top: -2rem">
                 <div class="panel-heading" role="tab" id="headingOne">
@@ -98,15 +94,14 @@
             </div>
 
 
-
-        @*</div>
+            @*</div>
     </div>*@<!-- end acordeon -->
-    
-    <div id="map" class="big-map" style="height: 200px; width: 100%;"></div>
-    <div class="row pick-size">
-        <div class="col-md-6 col-sm-6">
-            <label></label>
-            @*<div class="btn-group bootstrap-select">
+
+            <div id="map" class="big-map" style="height: 200px; width: 100%;"></div>
+            <div class="row pick-size">
+                <div class="col-md-6 col-sm-6">
+                    <label></label>
+                    @*<div class="btn-group bootstrap-select">
                 <button type="button" class="btn dropdown-toggle select-with-transition" data-toggle="dropdown" role="button" title="Rose">
                     <span class="filter-option pull-left">Rose </span>&nbsp;<span class="bs-caret">
                         <span class="caret"></span>
@@ -134,10 +129,10 @@
                     <option value="3">White</option>
                 </select>
             </div>*@
-        </div>
-        <div class="col-md-6 col-sm-6">
-            <label></label>
-            @*<div class="btn-group bootstrap-select">
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <label></label>
+                    @*<div class="btn-group bootstrap-select">
                 <button type="button" class="btn dropdown-toggle select-with-transition" data-toggle="dropdown" role="button" title="Small">
                     <span class="filter-option pull-left">Small </span>&nbsp;<span class="bs-caret">
                         <span class="caret"></span>
@@ -165,17 +160,17 @@
                     <option value="3">Large</option>
                 </select>
             </div>*@
+                </div>
+            </div>
+            <div class="card-footer" style="margin-bottom: -2rem">
+                <div class="row text-center">
+
+
+                    <button class="btn btn-rose btn-round" @*data-toggle="tooltip" data-placement="top" title="" data-container="body" data-original-title="Request Task Owner to let you do this Task"*@><i class="material-icons" style="margin-left: -5px; margin-right: 5px">done</i>LET ME DO THIS &nbsp;</button>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="card-footer" style="margin-bottom: -2rem">
-        <div class="row text-center">
-            
-         
-            <button class="btn btn-rose btn-round" @*data-toggle="tooltip" data-placement="top" title="" data-container="body" data-original-title="Request Task Owner to let you do this Task"*@><i class="material-icons"  style="margin-left: -5px; margin-right: 5px">done</i>LET ME DO THIS &nbsp;</button>
-        </div>
-    </div>
-</div>
-</div>
 </div>
 
 <div class="features text-center">
@@ -508,7 +503,7 @@
 
     }
 
-   
+
 </script>
 
 <script async defer

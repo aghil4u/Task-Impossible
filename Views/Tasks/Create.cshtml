@@ -168,8 +168,6 @@
                                             </div>
                                         </div>
 
-                                     
-
 
                                     </div>
                                 </div>
@@ -240,10 +238,10 @@
                     if ($("#CoverPhoto").val() == "") {
                         document.getElementById("CoverPhoto").value = data.xhr.response;
                         console.log(data.xhr.response);
-                       
+
                     }
                     document.getElementById("CoverPhoto").value = data.xhr.response.replace(/['"]+/g, '');
-                   
+
                 });
         }
     };

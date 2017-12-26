@@ -1,6 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
-using System.Collections.Generic;
 
 namespace TaskImpossible.Migrations
 {
@@ -9,36 +7,36 @@ namespace TaskImpossible.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.RenameColumn(
-                name: "TargetDate",
-                table: "Tasks",
-                newName: "StartDate");
+                "TargetDate",
+                "Tasks",
+                "StartDate");
 
             migrationBuilder.RenameColumn(
-                name: "ClosingDate",
-                table: "Tasks",
-                newName: "EndDate");
+                "ClosingDate",
+                "Tasks",
+                "EndDate");
 
             migrationBuilder.AddColumn<string>(
-                name: "DatePretext",
-                table: "Tasks",
+                "DatePretext",
+                "Tasks",
                 nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "DatePretext",
-                table: "Tasks");
+                "DatePretext",
+                "Tasks");
 
             migrationBuilder.RenameColumn(
-                name: "StartDate",
-                table: "Tasks",
-                newName: "TargetDate");
+                "StartDate",
+                "Tasks",
+                "TargetDate");
 
             migrationBuilder.RenameColumn(
-                name: "EndDate",
-                table: "Tasks",
-                newName: "ClosingDate");
+                "EndDate",
+                "Tasks",
+                "ClosingDate");
         }
     }
 }

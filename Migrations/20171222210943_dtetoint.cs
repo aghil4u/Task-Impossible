@@ -1,6 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
-using System.Collections.Generic;
 
 namespace TaskImpossible.Migrations
 {
@@ -9,8 +7,8 @@ namespace TaskImpossible.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<int>(
-                name: "DatePretext",
-                table: "Tasks",
+                "DatePretext",
+                "Tasks",
                 nullable: false,
                 oldClrType: typeof(string),
                 oldNullable: true);
@@ -19,8 +17,8 @@ namespace TaskImpossible.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "DatePretext",
-                table: "Tasks",
+                "DatePretext",
+                "Tasks",
                 nullable: true,
                 oldClrType: typeof(int));
         }
