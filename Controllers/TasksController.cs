@@ -1,13 +1,12 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using FineUploader;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using TaskImpossible.Data;
 using TaskImpossible.Models;
 using TaskImpossible.Services;
@@ -18,7 +17,7 @@ namespace TaskImpossible.Controllers
     {
         private readonly ImpossibleContext _context;
 
-        private IHostingEnvironment _environment;
+        private readonly IHostingEnvironment _environment;
 
         public TasksController(ImpossibleContext context, IHostingEnvironment env)
         {
@@ -182,17 +181,23 @@ namespace TaskImpossible.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> UploadFile(IFormFile file)
+        public async Task<ActionResult> UploadFile(IFormFile file)
         {
             var uploads = Path.Combine(_environment.WebRootPath, "Uploads");
+            string newFilename = DateTime.Now.DayOfYear + DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second +
+                              file.FileName;
             if (file.Length > 0)
-            {
-                using (var fileStream = new FileStream(Path.Combine(uploads, file.FileName), FileMode.Create))
+                using (var fileStream = new FileStream(Path.Combine(uploads, newFilename), FileMode.Create))
                 {
                     await file.CopyToAsync(fileStream);
                 }
-            }
-            return RedirectToAction("Index");
+
+
+            
+            return Json("/Uploads/"+ newFilename);
+            
+
+
         }
     }
 }

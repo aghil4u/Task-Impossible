@@ -64,33 +64,29 @@
                         <a asp-action="Details" asp-route-id="@item.Id">
                             <div class="card-image">
 
-                                <img class="img" src="~/images/sample (4).jpg">
+                                <img class="img" src="@item.CoverPhoto">
 
-                                <div class="colored-shadow" style="background-image: url(&quot;assets/img/examples/card-blog2.jpg&quot;); opacity: 1;"></div>
-                                <div class="ripple-container"></div>
+
                             </div>
                         </a>
-                        <div class="card-content" style="margin-top: -1rem" >
-                            
+                        <div class="card-content" style="margin-top: -1rem">
+
                             @switch (item.DatePretext)
                             {
                                 case 1:
-                                    <h6 class="category text-success">ON  @item.StartDate.ToString("dd-MM-yy H:mm tt")</h6>
+                                    <h6 class="category text-success">ON @item.StartDate.ToString("dd-MM-yy H:mm tt")</h6>
                                     break;
                                 case 2:
-                                    <h6 class="category text-success">BEFORE  @item.StartDate.ToString("dd-MM-yy H:mm tt") </h6>
+                                    <h6 class="category text-success">BEFORE @item.StartDate.ToString("dd-MM-yy H:mm tt") </h6>
                                     break;
                                 case 3:
-                                    <h6 class="category text-success">AFTER  @item.StartDate.ToString("dd-MM-yy H:mm tt") </h6>
+                                    <h6 class="category text-success">AFTER @item.StartDate.ToString("dd-MM-yy H:mm tt") </h6>
                                     break;
                                 case 4:
-                                    <h6 class="category text-success">FROM  @item.StartDate.ToString("dd-MM-yy")   TO @item.EndDate.ToString("dd-MM-yy")</h6>
+                                    <h6 class="category text-success">FROM @item.StartDate.ToString("dd-MM-yy") TO @item.EndDate.ToString("dd-MM-yy")</h6>
                                     break;
-            
-
                             }
 
-                           
 
                             <h4 class="card-title" style="margin-top: -1rem">
                                 <a asp-action="Details" asp-route-id="@item.Id">@item.Title</a>
@@ -101,7 +97,7 @@
                             <div class="footer">
                                 <div class="author">
                                     <a href="#pablo">
-                                        @*<img src="~/images/sample (3).jpg" alt="..." class="avatar img-raised">*@
+                                        @*<img src="/images/sample (3).jpg" alt="..." class="avatar img-raised">*@
                                         <span>@item.Owner</span>
                                     </a>
                                 </div>
