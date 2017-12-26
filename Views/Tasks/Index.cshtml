@@ -28,7 +28,7 @@
 
                 <a asp-action="Index" asp-route-so="@ViewData["NameSortParm"]" asp-route-cf="@ViewData["cf"]">Title</a>
                 <a asp-action="Index" asp-route-so="@ViewData["DateSortParm"]" asp-route-cf="@ViewData["cf"]">Date</a>
-
+                <a asp-action="Index" id="NearMeButton">Near Me</a>
 
                 <div class="card-content">
                     <form action="/Tasks" method="get" id="searchForum">
@@ -61,14 +61,19 @@
                 {
                     @*<div class="col-md-4" style="padding: 10px">*@
                     <div class="card card-blog">
-                        <a asp-action="Details" asp-route-id="@item.Id">
-                            <div class="card-image">
+                        @if (item.CoverPhoto != "")
+                        {
+                            <a asp-action="Details" asp-route-id="@item.Id">
+                                <div class="card-image">
 
-                                <img class="img" src="@item.CoverPhoto">
+                                    <img class="img" src="@item.CoverPhoto">
 
 
-                            </div>
-                        </a>
+                                </div>
+                            </a>
+                        }
+
+
                         <div class="card-content" style="margin-top: -1rem">
 
                             @switch (item.DatePretext)
@@ -98,7 +103,30 @@
                                 <div class="author">
                                     <a href="#pablo">
                                         @*<img src="/images/sample (3).jpg" alt="..." class="avatar img-raised">*@
-                                        <span>@item.Owner</span>
+
+                                        @if (item.Lat > 0 && item.Lon > 0 && ViewData["MyLat"] != null && ViewData["MyLon"] != null)
+                                        {
+                                            var lat1 = (double) ViewData["MyLat"];
+                                            var lon1 = (double) ViewData["MyLon"];
+                                            var R = 6371; // Radius of the earth in km
+                                            var dLat = Math.PI / 180 * (item.Lat - lat1); // deg2rad below
+                                            var dLon = Math.PI / 180 * (item.Lon - lon1);
+                                            var a =
+                                                Math.Sin(dLat / 2) * Math.Sin(dLat / 2) +
+                                                Math.Cos(Math.PI / 180 * lat1) * Math.Cos(Math.PI / 180 * item.Lat) *
+                                                Math.Sin(dLon / 2) * Math.Sin(dLon / 2)
+                                                ;
+                                            var c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+                                            var d = R * c; // Distance in km
+
+                                            <span>
+                                                <b> @string.Format("{0:0.0} KM", d)</b>
+                                            </span>
+                                        }
+
+
+
+
                                     </a>
                                 </div>
                                 <div class="stats">
@@ -187,6 +215,19 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('.selectpicker').selectpicker();
+
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+
+            navigator.geolocation.getCurrentPosition(function(position) {
+
+                $('#NearMeButton').attr("href",
+                    "/Tasks?lt=" + position.coords.latitude + "&ln=" + position.coords.longitude);
+
+
+            });
+
+        }
     });
 
 </script>

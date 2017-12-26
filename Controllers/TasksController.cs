@@ -26,13 +26,16 @@ namespace TaskImpossible.Controllers
         }
 
         // GET: Tasks
-        public async Task<IActionResult> Index(string s, string so, string cf, int? page)
+        public async Task<IActionResult> Index(string s, string so, string cf, int? page, double? lt, double? ln)
         {
             IQueryable<iTask> tasks;
             ViewData["cs"] = so;
 
             ViewData["NameSortParm"] = string.IsNullOrEmpty(so) ? "name_desc" : "";
             ViewData["DateSortParm"] = so == "Date" ? "date_desc" : "Date";
+            if (lt != null) ViewData["MyLat"] = lt;
+            if (ln != null) ViewData["MyLon"] = ln;
+
 
             if (s != null)
                 page = 1;
