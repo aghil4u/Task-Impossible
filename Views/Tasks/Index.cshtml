@@ -5,25 +5,38 @@
 }
 <div class="container" style="margin-bottom: 2rem; margin-top: 20rem;">
 
-    <div class="col-sm-2 col-sm-offset-10">
+    <div class="card card-form-horizontal" style="border-radius: 50px">
+        <div class="card-content" style="margin-right: -2px; padding: 0px;">
 
-        <div class="btn-group bootstrap-select">
-            <select class="selectpicker" data-style="btn btn-primary btn-round" title="Sort By" data-size="7" onchange="window.location.href = '/Tasks?so=' + this.value;" tabindex="-98">
-                <option class="bs-title-option" value="">@ViewData["cs"]</option>
+            <div class="col-sm-2 col-sm-offset-10">
 
-                <option value="Title">Title</option>
-                <option value="Date">Date</option>
-            </select>
+                <div class="btn-group bootstrap-select">
+                    <select class="selectpicker" data-style="btn btn-primary btn-round" title="Sort By" data-size="7" onchange="window.location.href = '/Tasks?so=' + this.value;" tabindex="-98">
+                        <option class="bs-title-option" value="">@ViewData["cs"]</option>
+
+                        <option value="Title">Title</option>
+                        <option value="Date">Date</option>
+                    </select>
+                </div>
+
+
+            </div>
         </div>
-
-
     </div>
+
+
 </div>
 
 <div class="cards">
 
     <div class="container">
         <div class="col-sm-3">
+
+            <div class="card">
+                <div id="map" class="map map-rounded" style="height: 200px; width: 100%;"></div>
+            </div>
+
+
             <div class="card" style="height: 50rem; width: 100%">
 
                 <a asp-action="Index" asp-route-so="@ViewData["NameSortParm"]" asp-route-cf="@ViewData["cf"]">Title</a>
@@ -35,6 +48,10 @@
                         <div class="form-group is-empty" style="width: 100%;">
                             <input type="text" id="s" name="s" class="form-control" placeholder="Search" value="@ViewData["cf"]">
 
+                        </div>
+
+                        <div id="sliderRegular" class="slider noUi-target noUi-ltr noUi-horizontal">
+                      
                         </div>
                     </form>
 
@@ -211,7 +228,7 @@
 
 
 <script src="~/lib/jquery/dist/jquery.js"></script>
-
+<script src="~/js/nouislider.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('.selectpicker').selectpicker();
@@ -230,4 +247,147 @@
         }
     });
 
+    //MAP WORKS
+    var map, pos, marker, cityCircle, km, mapop;
+
+    function initMap() {
+
+        pos = { lat: -34.397, lng: 150.644 };
+        map = new google.maps.Map(document.getElementById('map'),
+            {
+                center: pos,
+                zoom: 12,
+                zoomControl: true,
+                mapTypeControl: false,
+                scaleControl: false,
+                streetViewControl: false,
+                rotateControl: false,
+                fullscreenControl: true,
+
+            });
+
+        var myMarker = new google.maps.Marker({
+            map: map,
+            animation: google.maps.Animation.DROP,
+            position: pos
+        });
+        addYourLocationButton(map, myMarker);
+
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+
+            navigator.geolocation.getCurrentPosition(function(position) {
+                pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                mapop = {
+                    zoom: 13
+                };
+                km = 2;
+                //var km = parseInt(document.getElementById('km').value);
+                map.setCenter(pos);
+                DrowCircle(mapop, map, pos, km);
+            });
+
+        }
+    }
+
+
+    function DrowCircle(mapOptions, map, pos, km) {
+        //  document.getElementById("cityCircle").remove();
+        var populationOptions = {
+            strokeColor: '#e91e637a',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: '#e91e633b',
+            fillOpacity: 0.35,
+            map: map,
+            center: pos,
+            radius: Math.sqrt(km * 500) * 100
+        };
+        // Add the circle for this city to the map.
+        cityCircle = new google.maps.Circle(populationOptions);
+    }
+
+
+    function addYourLocationButton(map, cityCircle) {
+        var controlDiv = document.createElement('div');
+
+        var firstChild = document.createElement('button');
+        firstChild.style.backgroundColor = '#fff';
+        firstChild.style.border = 'none';
+        firstChild.style.outline = 'none';
+        firstChild.style.width = '25px';
+        firstChild.style.height = '25px';
+        firstChild.style.borderRadius = '2px';
+        //firstChild.style.boxShadow = '0 1px 4px rgba(0,0,0,0.3)';
+        firstChild.style.cursor = 'pointer';
+        firstChild.style.margin = '0px 14px';
+        firstChild.style.padding = '0px';
+        firstChild.title = 'Your Location';
+        controlDiv.appendChild(firstChild);
+
+        var secondChild = document.createElement('div');
+        secondChild.style.margin = '3px';
+        secondChild.style.width = '18px';
+        secondChild.style.height = '18px';
+        secondChild.style.backgroundImage = 'url(https://maps.gstatic.com/tactile/mylocation/mylocation-sprite-1x.png)';
+        secondChild.style.backgroundSize = '180px 18px';
+        secondChild.style.backgroundPosition = '0px 0px';
+        secondChild.style.backgroundRepeat = 'no-repeat';
+        secondChild.id = 'you_location_img';
+        firstChild.appendChild(secondChild);
+
+        google.maps.event.addListener(map,
+            'dragend',
+            function() {
+                $('#you_location_img').css('background-position', '0px 0px');
+            });
+
+        firstChild.addEventListener('click',
+            function() {
+                var imgX = '0';
+                var animationInterval = setInterval(function() {
+                        if (imgX == '-18') imgX = '0';
+                        else imgX = '-18';
+                        $('#you_location_img').css('background-position', imgX + 'px 0px');
+                    },
+                    500);
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                        DrowCircle(mapop, map, latlng, km);
+
+                        map.setCenter(latlng);
+                        clearInterval(animationInterval);
+                        $('#you_location_img').css('background-position', '-144px 0px');
+                    });
+                } else {
+                    clearInterval(animationInterval);
+                    $('#you_location_img').css('background-position', '0px 0px');
+                }
+            });
+
+        controlDiv.index = 1;
+        map.controls[google.maps.ControlPosition.RIGHT_TOP].push(controlDiv);
+    }
+
+    var slider = document.getElementById('sliderRegular');
+
+    noUiSlider.create(slider, {
+        start: 40,
+        connect: [true,false],
+        range: {
+            min: 0,
+            max: 100
+        }
+    });
+
+</script>
+
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvbpO6ps576pAmEBvWg9yTrjGrgyy4nCU&callback=initMap">
 </script>
