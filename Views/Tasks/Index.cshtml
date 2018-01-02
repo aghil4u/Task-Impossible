@@ -49,9 +49,11 @@
                             <input type="text" id="s" name="s" class="form-control" placeholder="Search" value="@ViewData["cf"]">
 
                         </div>
+                        
+                        <input type="text" value="" placeholder="Within" class="form-control">
 
-                        <div id="sliderRegular" class="slider noUi-target noUi-ltr noUi-horizontal">
-                      
+                        <div id="DistanceSlider" class="slider noUi-target noUi-ltr noUi-horizontal">
+
                         </div>
                     </form>
 
@@ -376,14 +378,15 @@
 
     var slider = document.getElementById('sliderRegular');
 
-    noUiSlider.create(slider, {
-        start: 40,
-        connect: [true,false],
-        range: {
-            min: 0,
-            max: 100
-        }
-    });
+    noUiSlider.create(slider,
+        {
+            start: 40,
+            connect: [true, false],
+            range: {
+                min: 0,
+                max: 100
+            }
+        });
 
 </script>
 

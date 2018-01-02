@@ -25,7 +25,7 @@ namespace TaskImpossible.Controllers
         }
 
         // GET: Tasks
-        public async Task<IActionResult> Index(string s, string so, string cf, int? page, double? lt, double? ln)
+        public async Task<IActionResult> Index(string s, string so, string cf, int? page, double? lt, double? ln, double? r)
         {
             IQueryable<iTask> tasks;
             ViewData["cs"] = so;
@@ -37,14 +37,16 @@ namespace TaskImpossible.Controllers
 
 
             if (s != null)
+            {
                 page = 1;
+            }
             else
+            {
                 s = cf;
+            }
 
             ViewData["cf"] = s;
-            tasks = !string.IsNullOrEmpty(s)
-                ? _context.Tasks.Where(t => t.Title.Contains(s) || t.Description.Contains(s) || s == null)
-                : _context.Tasks;
+            tasks = TaskFilter(_context.Tasks, s, so, lt, ln, r);
             switch (so)
             {
                 case "distance":
@@ -66,6 +68,41 @@ namespace TaskImpossible.Controllers
 
             var pageSize = 12;
             return View(await PagedList.PaginatedList<iTask>.CreateAsync(tasks.AsNoTracking(), page ?? 1, pageSize));
+        }
+
+        private IQueryable<iTask> TaskFilter(DbSet<iTask> MasterData, string searchString, string sortOrder, double? Latitude, double? Longitude, double? searchRadius)
+        {
+            IQueryable<iTask> result = MasterData;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                result = result.Where(t => t.Title.Contains(searchString) || t.Description.Contains(searchString) || searchString==null);
+            }
+
+            if (Latitude!=null && Longitude!=null && searchRadius!=null && searchRadius>0)
+            {
+
+                result = result.Where(t => CalculateDistance(t.Lat, t.Lon, (double) Latitude, (double) Longitude) < searchRadius);
+            }
+           
+
+            return result;
+
+        }
+
+        private double CalculateDistance(double tLat, double tLon, double latitude, double longitude)
+        {
+             var R = 6371; // Radius of the earth in km
+                var dLat = Math.PI / 180 * (tLat - latitude); // deg2rad below
+                var dLon = Math.PI / 180 * (tLon - longitude);
+                var a =
+                        Math.Sin(dLat / 2) * Math.Sin(dLat / 2) +
+                        Math.Cos(Math.PI / 180 * latitude) * Math.Cos(Math.PI / 180 * tLat) *
+                        Math.Sin(dLon / 2) * Math.Sin(dLon / 2)
+                    ;
+                var c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+                var d = R * c; // Distance in km
+            return d;
         }
 
         // GET: Tasks/Details/5
