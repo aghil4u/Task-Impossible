@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using TaskImpossible.Data;
 using TaskImpossible.Models;
 using TaskImpossible.Services;
@@ -34,7 +35,14 @@ namespace TaskImpossible.Controllers
             ViewData["DateSortParm"] = so == "Date" ? "date_desc" : "Date";
             if (lt != null) ViewData["MyLat"] = lt;
             if (ln != null) ViewData["MyLon"] = ln;
-
+            if (r != null)
+            {
+                ViewData["SearchRadius"] = r;
+            }
+            else
+            {
+                ViewData["SearchRadius"] = 5;
+            }
 
             if (s != null)
             {
@@ -67,6 +75,11 @@ namespace TaskImpossible.Controllers
             }
 
             var pageSize = 12;
+
+
+            string json = JsonConvert.SerializeObject(tasks);
+            //ViewData["chart"] = json;
+            ViewBag.TaskJson = json;
             return View(await PagedList.PaginatedList<iTask>.CreateAsync(tasks.AsNoTracking(), page ?? 1, pageSize));
         }
 

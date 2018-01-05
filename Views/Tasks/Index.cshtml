@@ -44,22 +44,22 @@
                 <a asp-action="Index" id="NearMeButton">Near Me</a>
 
                 <div class="card-content">
-                    <form action="/Tasks" method="get" id="searchForum">
+                   
                         <div class="form-group is-empty" style="width: 100%;">
-                            <input type="text" id="s" name="s" class="form-control" placeholder="Search" value="@ViewData["cf"]">
+                            <input type="text" id="SearchTextBox"  class="form-control" placeholder="Search" value="@ViewData["cf"]">
 
                         </div>
-                        
-                        <input type="text" value="" placeholder="Within" class="form-control">
 
-                        <div id="DistanceSlider" class="slider noUi-target noUi-ltr noUi-horizontal">
+                        <input type="number" max="100" min="1" value="@ViewData["SearchRadius"]" id="SearchRadiusTextBox"  placeholder="Within" class="form-control">
+
+                        <div id="DistanceSlider" class="slider noUi-horizontal">
 
                         </div>
-                    </form>
+                   
 
 
                     <div class="footer pull-center text-center" style="bottom: 0px; left: 0px; position: absolute; right: 0px; width: auto;">
-                        <button type="submit" form="searchForum" class="btn btn-rose btn-raised btn-round" style="">
+                        <button class="btn btn-rose btn-raised btn-round" id="UpdateSearchButton" style="">
                             Update
                             <div class="ripple-container"></div>
                         </button>
@@ -158,17 +158,6 @@
                     @*</div>*@
                 }
 
-
-
-
-
-
-
-
-
-
-
-
             </div>
         </div>
     </div>
@@ -235,18 +224,26 @@
     $(document).ready(function() {
         $('.selectpicker').selectpicker();
 
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-
-            navigator.geolocation.getCurrentPosition(function(position) {
-
-                $('#NearMeButton').attr("href",
-                    "/Tasks?lt=" + position.coords.latitude + "&ln=" + position.coords.longitude);
 
 
-            });
+        $("#UpdateSearchButton").click(function () {
 
-        }
+            // Try HTML5 geolocation.
+            if (navigator.geolocation) {
+
+                navigator.geolocation.getCurrentPosition(function(position) {
+
+                    var srt = document.getElementById('SearchRadiusTextBox');
+                    var stt=document.getElementById('SearchTextBox');
+                    window.location = "/Tasks?lt=" + position.coords.latitude + "&ln=" + position.coords.longitude + "&r=" + srt.value + "&s=" + stt.value;
+
+
+                });
+
+            }
+
+
+        });
     });
 
     //MAP WORKS
@@ -258,7 +255,7 @@
         map = new google.maps.Map(document.getElementById('map'),
             {
                 center: pos,
-                zoom: 12,
+                zoom: 11,
                 zoomControl: true,
                 mapTypeControl: false,
                 scaleControl: false,
@@ -268,12 +265,26 @@
 
             });
 
+        var tasklist = @Html.Raw(ViewBag.TaskJson);
+
+        for (var i = 0; i < tasklist.length; i++) {
+            // alert(tasklist[i].Title);
+            var posi = { lat: tasklist[i].Lat, lng: tasklist[i].Lon };
+            var mar = new google.maps.Marker({
+                map: map,
+                position: posi,
+                title: tasklist[i].Title
+            });
+
+            mar.setMap(map);
+
+        }
+
         var myMarker = new google.maps.Marker({
             map: map,
             animation: google.maps.Animation.DROP,
             position: pos
         });
-        addYourLocationButton(map, myMarker);
 
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
@@ -284,20 +295,22 @@
                     lng: position.coords.longitude
                 };
 
-                mapop = {
-                    zoom: 13
-                };
-                km = 2;
+               
+                    km = @ViewData["SearchRadius"];
+                
+
+
                 //var km = parseInt(document.getElementById('km').value);
                 map.setCenter(pos);
-                DrowCircle(mapop, map, pos, km);
+                DrowCircle(map, pos, km);
             });
 
         }
     }
 
 
-    function DrowCircle(mapOptions, map, pos, km) {
+
+    function DrowCircle(map, pos, km) {
         //  document.getElementById("cityCircle").remove();
         var populationOptions = {
             strokeColor: '#e91e637a',
@@ -309,84 +322,41 @@
             center: pos,
             radius: Math.sqrt(km * 500) * 100
         };
-        // Add the circle for this city to the map.
+
+
         cityCircle = new google.maps.Circle(populationOptions);
     }
 
 
-    function addYourLocationButton(map, cityCircle) {
-        var controlDiv = document.createElement('div');
 
-        var firstChild = document.createElement('button');
-        firstChild.style.backgroundColor = '#fff';
-        firstChild.style.border = 'none';
-        firstChild.style.outline = 'none';
-        firstChild.style.width = '25px';
-        firstChild.style.height = '25px';
-        firstChild.style.borderRadius = '2px';
-        //firstChild.style.boxShadow = '0 1px 4px rgba(0,0,0,0.3)';
-        firstChild.style.cursor = 'pointer';
-        firstChild.style.margin = '0px 14px';
-        firstChild.style.padding = '0px';
-        firstChild.title = 'Your Location';
-        controlDiv.appendChild(firstChild);
 
-        var secondChild = document.createElement('div');
-        secondChild.style.margin = '3px';
-        secondChild.style.width = '18px';
-        secondChild.style.height = '18px';
-        secondChild.style.backgroundImage = 'url(https://maps.gstatic.com/tactile/mylocation/mylocation-sprite-1x.png)';
-        secondChild.style.backgroundSize = '180px 18px';
-        secondChild.style.backgroundPosition = '0px 0px';
-        secondChild.style.backgroundRepeat = 'no-repeat';
-        secondChild.id = 'you_location_img';
-        firstChild.appendChild(secondChild);
-
-        google.maps.event.addListener(map,
-            'dragend',
-            function() {
-                $('#you_location_img').css('background-position', '0px 0px');
-            });
-
-        firstChild.addEventListener('click',
-            function() {
-                var imgX = '0';
-                var animationInterval = setInterval(function() {
-                        if (imgX == '-18') imgX = '0';
-                        else imgX = '-18';
-                        $('#you_location_img').css('background-position', imgX + 'px 0px');
-                    },
-                    500);
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(function(position) {
-                        var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                        DrowCircle(mapop, map, latlng, km);
-
-                        map.setCenter(latlng);
-                        clearInterval(animationInterval);
-                        $('#you_location_img').css('background-position', '-144px 0px');
-                    });
-                } else {
-                    clearInterval(animationInterval);
-                    $('#you_location_img').css('background-position', '0px 0px');
-                }
-            });
-
-        controlDiv.index = 1;
-        map.controls[google.maps.ControlPosition.RIGHT_TOP].push(controlDiv);
-    }
-
-    var slider = document.getElementById('sliderRegular');
+    var slider = document.getElementById('DistanceSlider');
 
     noUiSlider.create(slider,
         {
-            start: 40,
+            start: @ViewData["SearchRadius"],
             connect: [true, false],
             range: {
-                min: 0,
-                max: 100
+                min: 1,
+                '99%': 100,
+                max: 9999
             }
         });
+
+    var inputNumber = document.getElementById('SearchRadiusTextBox');
+
+    slider.noUiSlider.on('update', function( values, handle ) {
+        var value = values[handle];
+        inputNumber.value = value;
+        if (value == 9999) {
+            inputNumber.value = "Everywhere..";
+        }
+       });
+
+    inputNumber.addEventListener('change', function(){
+        slider.noUiSlider.set(this.value);
+    });
+
 
 </script>
 
