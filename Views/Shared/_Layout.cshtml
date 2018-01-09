@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-default navbar-fixed-top navbar-color-on-scroll" color-on-scroll=" " id="sectionsNav">
+<nav class="navbar navbar-default navbar-fixed-top navbar-color-on-scroll navbar-transparent" color-on-scroll="200" id="sectionsNav" >
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -32,18 +32,20 @@
 
             <ul class="nav navbar-nav navbar-right">
 
-
-
-
-
-                @await Html.PartialAsync("_LoginPartial")
-
-
                 <li>
                     <a asp-controller="Tasks" asp-action="Index">
                         <i class="material-icons">list</i> TASKS
                     </a>
                 </li>
+
+                @await Html.PartialAsync("_LoginPartial")
+
+                <li class="button-container">
+                    <a asp-controller="Tasks" asp-action="Create" class="btn btn-rose btn-round">
+                        <i class="material-icons">lightbulb_outline</i> Create a task
+                    </a>
+                </li>
+
             </ul>
 
         </div>

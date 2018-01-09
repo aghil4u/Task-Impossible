@@ -13927,17 +13927,17 @@ select.selectpicker { display: none !important; }
 .product-page .title-row { margin-top: 20px; }
 
 .product-page .tab-content {
+    margin-top: 30px;
     height: auto;
-    margin: 30px 0px;
-    overflow: hidden;
     text-align: center;
     width: 100%;
 }
 
 .product-page .tab-content img {
-    border-radius: 3px;
+    -ms-border-radius: 5px;
+    border-radius: 5px;
     height: auto;
-    max-width: 300px;
+    overflow: hidden
 }
 
 .product-page .main-price { margin: 10px 0 25px; }
@@ -14498,4 +14498,15 @@ a[href^="https://maps.google.com/maps"] {
 
 .gmnoprint div {
     background: none !important;
+}
+
+.hidecard {
+    background:none;
+    border-radius: 0px;
+    box-shadow: none;
+    color: transparent;
+    display: inline-block;
+    margin-bottom: 0px;
+    position: relative;
+    width: 100%;
 }

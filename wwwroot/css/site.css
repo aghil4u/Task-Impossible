@@ -105,3 +105,14 @@ a[href^="https://maps.google.com/maps"] {
 .gmnoprint div {
     background: none !important;
 }
+
+.hidecard {
+    background:none;
+    border-radius: 0px;
+    box-shadow: none;
+    color: transparent;
+    display: inline-block;
+    margin-bottom: 0px;
+    position: relative;
+    width: 100%;
+}
