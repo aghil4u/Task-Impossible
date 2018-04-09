@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="taskim" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\idkwim\\Documents\\GitHub\\Task-Impossible\\Task-Impossible\\obj\\Debug\\netcoreapp2\.0\\win10-x64\\PubTmp\\Out\\$" />
+  </parameter>
+</parameters>

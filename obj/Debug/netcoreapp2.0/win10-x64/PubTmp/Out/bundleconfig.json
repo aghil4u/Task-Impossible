@@ -1,0 +1,32 @@
+[
+  {
+    "outputFileName": "wwwroot/js/master.js",
+    "inputFiles": [
+      "wwwroot/js/bootstrap.js",
+      "wwwroot/js/material.js",
+      "wwwroot/js/moment.js",
+      "wwwroot/js/nouislider.js",
+      "wwwroot/js/bs-datetimepicker.js",
+      "wwwroot/js/bs-selectpicker.js",
+      "wwwroot/js/bs-tagspicker.js",
+      "wwwroot/js/materialkit.js",
+      "wwwroot/js/site.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/css/master.css",
+    "inputFiles": [
+      "wwwroot/css/bootstrap.css",
+      "wwwroot/css/material-kit.css",
+      "wwwroot/css/site.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  }
+]

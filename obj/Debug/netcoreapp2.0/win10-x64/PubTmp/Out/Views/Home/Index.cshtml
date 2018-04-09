@@ -1,0 +1,207 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="presentation-page">
+<div class="page-header header-filter clear-filter" data-parallax="true" style="background-image: url(&quot;images/bg0.jpg&quot;); transform: translate3d(0px, 0px, 0px);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="brand">
+                    <h1>
+                        Making it Possible.
+                        <div class="pro-badge">
+                            ALPHA
+                        </div>
+                    </h1>
+                    <h3 class="title">Worlds most innovative crowdsourced task management system.</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main main-raised">
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h4 class="description text-center">Want your pool cleaned? Wall painted? Website Designed? Task.im makes it possible to collaborate with talented professionals near you to ge things done.</h4>
+                </div>
+            </div>
+            <div class="features-1">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="info">
+                            <div class="icon icon-rose">
+                                <i class="material-icons">thumb_up</i>
+                            </div>
+                            <h4 class="info-title">High Quality User Base</h4>
+                            <p>Get it done in the best and easiest way possible with our well expirenced Taskers.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="info">
+                            <div class="icon icon-info">
+                                <i class="material-icons">favorite</i>
+                            </div>
+                            <h4 class="info-title">Innovative Profile System</h4>
+                            <p>Finding the best person to do your job have never been easier. With our innovative Tasker rating system, You will always be in control.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="info">
+                            <div class="icon icon-success">
+                                <i class="material-icons">done_all</i>
+                            </div>
+                            <h4 class="info-title">Crowdsourcing Reimagined</h4>
+                            <p>Solving todays unemployement issues with tommorows technology.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<div class="section section-pricing pricing-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <h2 class="title">Ready to Start with Task.im?</h2>
+                <ul class="nav nav-pills nav-pills-rose" role="tablist">
+                    <li class="active">
+                        <a href="#personal" role="tab" data-toggle="tab">
+                            Get Things Done
+                        </a>
+                    </li>
+                    @*<li>
+                        <a href="#commercial" role="tab" data-toggle="tab">
+                            Become a Tasker
+                        </a>
+                    </li>*@
+                </ul>
+            </div>
+            <div class="col-md-8 col-md-offset-2">
+                <div class="tab-content tab-space">
+                    <div class="tab-pane fade in active" id="personal">
+                        <p class="description">
+                            Create a task and let us know how we can help you. well make sure nothing is impossible ;)
+                        </p>
+                        <div class="col-md-6">
+                            <div class="card card-pricing card-margin">
+                                <div class="card-content">
+                                    <h6 class="category">Get Things Done</h6>
+                                    <h1 class="card-title">
+                                        <small>$</small>FREE
+                                    </h1>
+                                    <ul>
+                                        <li><b>Secure</b> Payment System</li>
+                                        <li><b>1458 Taskers</b> And Counting</li>
+                                        <li><b>Responsive</b> Support Team</li>
+                                        <li>Sit back and <b> Task.im</b></li>
+                                    </ul>
+                                    <a asp-controller="Tasks" asp-action="Create" class="btn btn-rose btn-round">
+                                        Create a Task
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card card-pricing">
+                                <div class="card-content">
+                                    <h6 class="category">Become a Tasker</h6>
+                                    <h1 class="card-title">
+                                        <small>$</small>FREE
+                                    </h1>
+                                    <ul>
+                                        <li>Trade your spare time For <b> Money</b></li>
+                                        <li><b>Guarenteed</b> Payment</li>
+                                        <li><b>Responsive</b> Support Team</li>
+                                        <li>Do Tasks<b> Anywhere </b>in the world</li>
+                                        <li>Virtually <b>Unlimited</b> Customer Base</li>
+                                        <li>Innovative<b> Profile Management</b></li>
+                                    </ul>
+                                    <a asp-controller="Tasks" asp-action="Index" class="btn btn-rose btn-round">
+                                        Explore Tasks
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="commercial">
+                        <p class="description">
+
+                        </p>
+                        <div class="col-md-6">
+                            <div class="card card-pricing card-margin">
+                                <div class="card-content">
+                                    <h6 class="category">HTML Package</h6>
+                                    <h1 class="card-title">
+                                        <small>$</small>319
+                                    </h1>
+                                    <ul>
+                                        <li><b>HTML/CSS/JS/SASS</b> Files</li>
+                                        <li><b>Fully Coded</b> Components</li>
+                                        <li><b>Responsive</b> Design</li>
+                                        <li>Product<b> Documentation</b></li>
+                                    </ul>
+                                    <a class="btn btn-rose btn-round">
+                                        Buy Now!
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card card-pricing">
+                                <div class="card-content">
+                                    <h6 class="category">HTML &amp; Photoshop Package</h6>
+                                    <h1 class="card-title">
+                                        <small>$</small>599
+                                    </h1>
+                                    <ul>
+                                        <li><b>HTML/CSS/JS/SASS</b> Files</li>
+                                        <li><b>Fully Coded</b> Components</li>
+                                        <li><b>Responsive</b> Design</li>
+                                        <li>Product<b> Documentation</b></li>
+                                        <li><b>+ Photoshop</b> Files</li>
+                                        <li><b>+ Components</b> on Layers</li>
+                                    </ul>
+                                    <a class="btn btn-rose btn-round">
+                                        Explore
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-md-offset-2 text-center">
+                @*<p class="description">You have <b>Free Unlimited Updates</b> and <b>Premium Support</b> on each package. You also have <b>30 days</b> to request a refund if you're not happy with your purchase.
+                    </p>*@
+            </div>
+
+        </div>
+    </div>
+    <div class="social-line text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="title">Thank you for sharing!</h4>
+                </div>
+                <a href="#pablo" id="twitter" class="btn btn-twitter btn-round sharrre">
+                    <i class="fa fa-twitter"></i> Twitter
+                </a>
+                <a href="#pablo" id="facebook " class="btn btn-facebook btn-round">
+                    <i class="fa fa-facebook-square"></i> Facebook
+                </a>
+                <a href="#pablo" id="google" class="btn btn-google btn-round sharrre">
+                    <i class="fa fa-google-plus"></i> Google
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</div>

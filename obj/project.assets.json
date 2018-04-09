@@ -13258,48 +13258,48 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
+          "Bootstrap.v3.Datetimepicker.CSS": {
+            "target": "Package",
+            "version": "[4.17.45, )"
+          },
+          "Microsoft.AspNetCore.All": {
+            "target": "Package",
+            "version": "[2.0.3, )"
+          },
           "Microsoft.AspNetCore.Authentication.Facebook": {
             "target": "Package",
-            "version": "2.0.1"
+            "version": "[2.0.1, )"
+          },
+          "Microsoft.AspNetCore.Authentication.Google": {
+            "target": "Package",
+            "version": "[2.0.1, )"
           },
           "Microsoft.EntityFrameworkCore.Tools": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "2.0.1"
+            "version": "[2.0.1, )"
+          },
+          "Microsoft.NETCore.App": {
+            "target": "Package",
+            "version": "[2.0.0, )",
+            "autoReferenced": true
           },
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "2.0.1"
-          },
-          "Microsoft.NETCore.App": {
-            "target": "Package",
-            "version": "2.0",
-            "autoReferenced": true
-          },
-          "Microsoft.AspNetCore.Authentication.Google": {
-            "target": "Package",
-            "version": "2.0.1"
-          },
-          "Microsoft.AspNetCore.All": {
-            "target": "Package",
-            "version": "2.0.3"
+            "version": "[2.0.1, )"
           },
           "Moment.js": {
             "target": "Package",
-            "version": "2.20.1"
-          },
-          "jQuery.Validation": {
-            "target": "Package",
-            "version": "1.16.0"
+            "version": "[2.20.1, )"
           },
           "Newtonsoft.Json": {
             "target": "Package",
-            "version": "10.0.3"
+            "version": "[10.0.3, )"
           },
-          "Bootstrap.v3.Datetimepicker.CSS": {
+          "jQuery.Validation": {
             "target": "Package",
-            "version": "4.17.45"
+            "version": "[1.16.0, )"
           }
         },
         "imports": [

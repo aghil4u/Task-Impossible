@@ -1,0 +1,102 @@
+﻿@model RegisterViewModel
+@inject SignInManager<ApplicationUser> SignInManager
+@{
+    ViewData["Title"] = "Register";
+}
+
+
+<div class="page-header header-filter" filter-color="purple" style="background-image: url(''); background-position: top center; background-size: cover;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 col-md-offset-3">
+
+                <div class="card card-signup" style="padding-bottom: 5rem">
+                    <h2 class="card-title text-center">Register</h2>
+                    <div class="row">
+
+                        <div class="col-md-10 col-md-offset-1">
+                            <div class="social text-center">
+                                @{
+                                    var provider = (await SignInManager.GetExternalAuthenticationSchemesAsync()).FirstOrDefault(m => m.Name == "Facebook");
+                                    <form asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" style="display: inline-block">
+                                        <button class="btn btn-just-icon btn-round btn-facebook" type="submit" name="provider" value="@provider.Name">
+                                            <i class="fa fa-facebook"> </i>
+                                        </button>
+                                    </form>
+                                }
+
+                                @{
+                                    var gprovider = (await SignInManager.GetExternalAuthenticationSchemesAsync()).FirstOrDefault(m => m.Name == "Google");
+                                    <form asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" style="display: inline-block">
+                                        <button class="btn btn-just-icon btn-round btn-google" type="submit" name="provider" value="@gprovider.Name">
+                                            <i class="fa fa-google"> </i>
+                                        </button>
+                                    </form>
+                                }
+                                <button class="btn btn-just-icon btn-round btn-linkedin">
+                                    <i class="fa fa-linkedin"></i>
+                                </button>
+                                <h4> </h4>
+                            </div>
+
+                            <form class="form" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+                                <div class="card-content">
+
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="material-icons">email</i>
+                                        </span>
+                                        <div class="form-group is-empty">
+                                            <input type="text" class="form-control" asp-for="Email" placeholder="Email...">
+                                        </div>
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="material-icons">lock_outline</i>
+                                        </span>
+                                        <div class="form-group is-empty">
+                                            <input type="password" asp-for="Password" placeholder="Password..." class="form-control">
+                                        </div>
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="material-icons">lock_outline</i>
+                                        </span>
+                                        <div class="form-group is-empty">
+                                            <input type="password" asp-for="ConfirmPassword" placeholder="Retype the Password..." class="form-control">
+                                        </div>
+                                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                    </div>
+                                    <!-- If you want to add a checkbox to this form, uncomment this code -->
+
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="optionsCheckboxes" checked="">
+                                            I agree to the <a href="#something">terms and conditions</a>.
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="footer text-center">
+                                    <input type="submit" value="Register" class="btn btn-primary btn-round" style="margin-top: 3rem"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

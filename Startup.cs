@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 using TaskImpossible.Data;
 using TaskImpossible.Models;
 using TaskImpossible.Services;
@@ -40,6 +42,7 @@ namespace TaskImpossible
                 .AddDefaultTokenProviders();
 
 
+
             services.Configure<MvcOptions>(options => { options.Filters.Add(new RequireHttpsAttribute()); });
 
             // Add application services.
@@ -66,6 +69,15 @@ namespace TaskImpossible
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @".well-known")),
+                RequestPath = new Microsoft.AspNetCore.Http.PathString("/.well-known"),
+                ServeUnknownFileTypes = true // serve extensionless file
+            });
+
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

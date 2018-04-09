@@ -1,0 +1,14 @@
+C:\Users\idkwim\Documents\GitHub\Task-Impossible\Task-Impossible\bin\Any CPU\Debug\netcoreapp2.0\win10-x64\hostpolicy.dll
+C:\Users\idkwim\Documents\GitHub\Task-Impossible\Task-Impossible\bin\Any CPU\Debug\netcoreapp2.0\win10-x64\hostfxr.dll
+C:\Users\idkwim\Documents\GitHub\Task-Impossible\Task-Impossible\bin\Any CPU\Debug\netcoreapp2.0\win10-x64\Task-Impossible.exe
+C:\Users\idkwim\Documents\GitHub\Task-Impossible\Task-Impossible\bin\Any CPU\Debug\netcoreapp2.0\win10-x64\Task-Impossible.deps.json
+C:\Users\idkwim\Documents\GitHub\Task-Impossible\Task-Impossible\bin\Any CPU\Debug\netcoreapp2.0\win10-x64\Task-Impossible.runtimeconfig.json
+C:\Users\idkwim\Documents\GitHub\Task-Impossible\Task-Impossible\bin\Any CPU\Debug\netcoreapp2.0\win10-x64\Task-Impossible.runtimeconfig.dev.json
+C:\Users\idkwim\Documents\GitHub\Task-Impossible\Task-Impossible\bin\Any CPU\Debug\netcoreapp2.0\win10-x64\Task-Impossible.dll
+C:\Users\idkwim\Documents\GitHub\Task-Impossible\Task-Impossible\bin\Any CPU\Debug\netcoreapp2.0\win10-x64\Task-Impossible.pdb
+C:\Users\idkwim\Documents\GitHub\Task-Impossible\Task-Impossible\obj\Any CPU\Debug\netcoreapp2.0\win10-x64\Task-Impossible.csproj.CoreCompileInputs.cache
+C:\Users\idkwim\Documents\GitHub\Task-Impossible\Task-Impossible\obj\Any CPU\Debug\netcoreapp2.0\win10-x64\UserSecretsAssemblyInfo.cs
+C:\Users\idkwim\Documents\GitHub\Task-Impossible\Task-Impossible\obj\Any CPU\Debug\netcoreapp2.0\win10-x64\Task-Impossible.AssemblyInfoInputs.cache
+C:\Users\idkwim\Documents\GitHub\Task-Impossible\Task-Impossible\obj\Any CPU\Debug\netcoreapp2.0\win10-x64\Task-Impossible.AssemblyInfo.cs
+C:\Users\idkwim\Documents\GitHub\Task-Impossible\Task-Impossible\obj\Any CPU\Debug\netcoreapp2.0\win10-x64\Task-Impossible.dll
+C:\Users\idkwim\Documents\GitHub\Task-Impossible\Task-Impossible\obj\Any CPU\Debug\netcoreapp2.0\win10-x64\Task-Impossible.pdb
